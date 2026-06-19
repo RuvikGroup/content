@@ -19,11 +19,37 @@ describe('Pagefind search UI integration', () => {
     expect(existsSync(resolve(srcDir, 'pages/search.astro'))).toBe(true);
   });
 
-  it('BaseLayout.astro includes pagefind-ui.css in <head>', () => {
+  it('search.astro includes pagefind-ui.css', () => {
+    const content = readFileSync(
+      resolve(srcDir, 'pages/search.astro'),
+      'utf-8',
+    );
+    expect(content).toContain('pagefind-ui.css');
+  });
+
+  it('search.astro includes pagefind-ui.js with is:inline', () => {
+    const content = readFileSync(
+      resolve(srcDir, 'pages/search.astro'),
+      'utf-8',
+    );
+    expect(content).toContain('pagefind-ui.js');
+    expect(content).toContain('is:inline');
+  });
+
+  it('search.astro mounts PagefindUI on the #search element', () => {
+    const content = readFileSync(
+      resolve(srcDir, 'pages/search.astro'),
+      'utf-8',
+    );
+    expect(content).toContain('id="search"');
+    expect(content).toContain('PagefindUI');
+  });
+
+  it('BaseLayout.astro exposes a head slot for per-page assets', () => {
     const content = readFileSync(
       resolve(srcDir, 'layouts/BaseLayout.astro'),
       'utf-8',
     );
-    expect(content).toContain('pagefind-ui.css');
+    expect(content).toContain('slot name="head"');
   });
 });

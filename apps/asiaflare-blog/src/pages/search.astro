@@ -5,10 +5,24 @@ import Footer from "../components/Footer.astro";
 ---
 
 <BaseLayout title="Search" description="Search AsiaFlare Blog posts.">
+  <Fragment slot="head">
+    <!-- Pagefind search UI — only loaded on this page, assets exist after postbuild -->
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+    <script is:inline src="/pagefind/pagefind-ui.js"></script>
+    <script is:inline>
+      window.addEventListener("DOMContentLoaded", () => {
+        var el = document.getElementById("search");
+        if (el && typeof PagefindUI !== "undefined") {
+          new PagefindUI({ element: "#search", showSubResults: true });
+        }
+      });
+    </script>
+  </Fragment>
+
   <Header slot="header" />
 
   <h1 class="page-title">Search</h1>
-  <div id="search"></div>
+  <div id="search" role="search" aria-label="Site search"></div>
 
   <Footer slot="footer" />
 </BaseLayout>
