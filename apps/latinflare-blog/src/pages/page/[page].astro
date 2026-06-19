@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPathsOptions, Page } from 'astro';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import PostCard from '../../components/PostCard.astro';
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  // Page 1 is served by index.astro; skip it here
+  const pages = paginate(sorted, { pageSize: 10 });
+  return pages.filter(({ params }) => Number(params.page) > 1);
+}
+
+interface Props {
+  page: Page<CollectionEntry<'blog'>>;
+}
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title={`Blog — Page ${page.currentPage}`} description="Dating tips, success stories, and guides for Latin singles.">
+  <Header slot="header" />
+
+  <h1 class="page-title">LatinFlare Blog</h1>
+  <p class="page-desc">Page {page.currentPage} of {page.lastPage}</p>
+
+  <div class="post-grid">
+    {page.data.map((post) => <PostCard post={post} />)}
+  </div>
+
+  <nav class="pagination">
+    {page.url.prev ? <a href={page.currentPage === 2 ? '/' : page.url.prev}>&larr; Newer posts</a> : <span />}
+    {page.url.next ? <a href={page.url.next}>Older posts &rarr;</a> : <span />}
+  </nav>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .page-desc { color: var(--color-muted); margin-bottom: 2rem; }
+  .post-grid { display: grid; gap: 1.5rem; }
+  .pagination { display: flex; justify-content: space-between; margin-top: 2.5rem; }
+</style>

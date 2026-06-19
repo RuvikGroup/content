@@ -1,0 +1,11 @@
+/* LatinFlare red brand colour */
+:root {
+  --sl-color-accent-low: #fecaca;
+  --sl-color-accent: #dc2626;
+  --sl-color-accent-high: #7f1d1d;
+}
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #7f1d1d;
+  --sl-color-accent: #ef4444;
+  --sl-color-accent-high: #fecaca;
+}
