@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "prebuild": "cp ../../packages/cms-config/config.yml public/admin/config.yml",
     "build": "astro build",
-    "postbuild": "pagefind --site dist",
+    "postbuild": "npx pagefind --site dist",
     "preview": "astro preview",
     "test": "vitest run"
   },

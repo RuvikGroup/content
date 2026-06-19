@@ -21,6 +21,6 @@ describe('asiaflare-blog package.json', () => {
 
   it('has a postbuild script that runs pagefind', () => {
     expect(pkg.scripts).toBeDefined();
-    expect(pkg.scripts!['postbuild']).toBe('pagefind --site dist');
+    expect(pkg.scripts!['postbuild']).toBe('npx pagefind --site dist');
   });
 });
