@@ -52,6 +52,43 @@ importers:
         specifier: ^0.34.5
         version: 0.34.5
 
+  apps/latinflare-blog:
+    dependencies:
+      '@astrojs/rss':
+        specifier: ^4.0.11
+        version: 4.0.18
+      '@astrojs/sitemap':
+        specifier: ^3.3.0
+        version: 3.7.3
+      '@ruvikgroup/cms-config':
+        specifier: workspace:*
+        version: link:../../packages/cms-config
+      astro:
+        specifier: ^6.4.5
+        version: 6.4.8(@types/node@24.13.2)(rollup@4.62.1)(yaml@2.9.0)
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
+    devDependencies:
+      vitest:
+        specifier: ^3.0.0
+        version: 3.2.6(@types/debug@4.1.13)(@types/node@24.13.2)(yaml@2.9.0)
+      zod:
+        specifier: ^3.23.0
+        version: 3.25.76
+
+  apps/latinflare-docs:
+    dependencies:
+      '@astrojs/starlight':
+        specifier: ^0.40.0
+        version: 0.40.0(astro@6.4.8(@types/node@24.13.2)(rollup@4.62.1)(yaml@2.9.0))(typescript@5.9.3)
+      astro:
+        specifier: ^6.4.5
+        version: 6.4.8(@types/node@24.13.2)(rollup@4.62.1)(yaml@2.9.0)
+      sharp:
+        specifier: ^0.34.5
+        version: 0.34.5
+
   packages/cms-config: {}
 
   packages/shared-config: {}

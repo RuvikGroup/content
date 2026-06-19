@@ -1,0 +1,19 @@
+import { z } from 'zod';
+
+const validDate = z.coerce.date().refine((d) => !isNaN(d.getTime()), {
+  message: 'Invalid date value',
+});
+
+/** Zod schema for a blog post — extracted so tests can import it without astro:content. */
+export const blogSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+  pubDate: validDate,
+  updatedDate: validDate.optional(),
+  author: z.string().default('LatinFlare Team'),
+  tags: z.array(z.string()).default([]),
+  draft: z.boolean().default(false),
+  heroImage: z.string().url().optional(),
+});
+
+export type BlogFrontmatter = z.infer<typeof blogSchema>;

@@ -9,8 +9,8 @@ public_folder: /images
 publish_mode: editorial_workflow
 
 collections:
-  - name: asiaflare-blog
-    label: AsiaFlare Blog Posts
+  - name: blog
+    label: Blog Posts
     folder: apps/asiaflare-blog/src/content/blog
     create: true
     slug: "{{slug}}"
@@ -19,20 +19,6 @@ collections:
       - { label: Description, name: description, widget: text }
       - { label: Publish Date, name: pubDate, widget: datetime }
       - { label: Author, name: author, widget: string, default: "AsiaFlare Team" }
-      - { label: Tags, name: tags, widget: list, default: [] }
-      - { label: Draft, name: draft, widget: boolean, default: false }
-      - { label: Body, name: body, widget: markdown }
-
-  - name: latinflare-blog
-    label: LatinFlare Blog Posts
-    folder: apps/latinflare-blog/src/content/blog
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Description, name: description, widget: text }
-      - { label: Publish Date, name: pubDate, widget: datetime }
-      - { label: Author, name: author, widget: string, default: "LatinFlare Team" }
       - { label: Tags, name: tags, widget: list, default: [] }
       - { label: Draft, name: draft, widget: boolean, default: false }
       - { label: Body, name: body, widget: markdown }

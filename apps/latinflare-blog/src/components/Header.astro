@@ -1,0 +1,48 @@
+---
+---
+
+<header>
+  <nav>
+    <a href="/" class="logo">LatinFlare Blog</a>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/tags/">Tags</a></li>
+      <li><a href="/rss.xml">RSS</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    border-bottom: 1px solid var(--color-border);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0.875rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  ul a {
+    color: var(--color-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  ul a:hover { color: var(--color-primary); }
+</style>
