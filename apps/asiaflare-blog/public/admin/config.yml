@@ -2,6 +2,7 @@ backend:
   name: github
   repo: RuvikGroup/content
   branch: main
+  base_url: https://cms-auth.ruvikgroup.com
 
 media_folder: apps/asiaflare-blog/public/images
 public_folder: /images
