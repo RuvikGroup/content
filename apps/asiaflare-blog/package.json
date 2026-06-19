@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "prebuild": "cp ../../packages/cms-config/config.yml public/admin/config.yml",
     "build": "astro build",
+    "postbuild": "npx pagefind --site dist",
     "preview": "astro preview",
     "test": "vitest run"
   },
@@ -17,6 +18,7 @@
     "sharp": "^0.34.5"
   },
   "devDependencies": {
+    "pagefind": "^1.0.0",
     "vitest": "^3.0.0",
     "zod": "^3.23.0"
   }
