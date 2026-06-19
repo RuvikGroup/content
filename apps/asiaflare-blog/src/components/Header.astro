@@ -3,7 +3,10 @@
 
 <header>
   <nav>
-    <a href="/" class="logo">AsiaFlare Blog</a>
+    <a href="/" class="logo-link" aria-label="AsiaFlare Blog">
+      <img src="/logo-light.svg" alt="AsiaFlare" height="32" class="logo logo-light" />
+      <img src="/logo-dark.svg" alt="AsiaFlare" height="32" class="logo logo-dark" />
+    </a>
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/tags/">Tags</a></li>
@@ -29,11 +32,12 @@
     align-items: center;
     justify-content: space-between;
   }
-  .logo {
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: var(--color-primary);
-    text-decoration: none;
+  .logo-link { text-decoration: none; display: flex; align-items: center; }
+  .logo { display: block; }
+  .logo-dark { display: none; }
+  @media (prefers-color-scheme: dark) {
+    .logo-light { display: none; }
+    .logo-dark { display: block; }
   }
   ul {
     list-style: none;

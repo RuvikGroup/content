@@ -37,5 +37,6 @@ const hasMore = sorted.length > PAGE_SIZE;
   .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
   .page-desc { color: var(--color-muted); margin-bottom: 2rem; }
   .post-grid { display: grid; gap: 1.5rem; }
+  @media (min-width: 640px) { .post-grid { grid-template-columns: repeat(2, 1fr); } }
   .pagination { margin-top: 2.5rem; text-align: right; }
 </style>

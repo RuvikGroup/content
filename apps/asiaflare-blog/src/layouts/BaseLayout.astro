@@ -42,18 +42,22 @@ const pageTitle = `${title} — AsiaFlare Blog`;
     <meta name="twitter:description" content={description} />
     {image && <meta name="twitter:image" content={image} />}
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
     <slot name="head" />
 
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       :root {
-        --color-primary: #e85d4a;
+        --color-primary: #16a34a;
         --color-text: #1a1a2e;
         --color-muted: #6b7280;
         --color-bg: #fafafa;
         --color-border: #e5e7eb;
-        --font-sans: system-ui, -apple-system, sans-serif;
-        --max-width: 780px;
+        --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        --max-width: 1100px;
       }
       body {
         font-family: var(--font-sans);
