@@ -10,8 +10,8 @@ export default defineConfig({
 			title: 'AsiaFlare Help Centre',
 			description: 'Help and guides for AsiaFlare dating app',
 			logo: {
-				light: '/logo/light.svg',
-				dark: '/logo/dark.svg',
+				light: './src/assets/logo/light.svg',
+				dark: './src/assets/logo/dark.svg',
 				alt: 'AsiaFlare',
 				replacesTitle: true,
 			},
