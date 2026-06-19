@@ -1,0 +1,11 @@
+{
+  "name": "@ruvikgroup/shared-config",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Shared Starlight/Astro configuration (placeholder)",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'shared-config: no build step yet'",
+    "lint": "echo 'shared-config: no lint step yet'"
+  }
+}

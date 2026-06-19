@@ -1,0 +1,11 @@
+{
+  "name": "@ruvikgroup/shared-ui",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Shared Astro component library (placeholder)",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'shared-ui: no build step yet'",
+    "lint": "echo 'shared-ui: no lint step yet'"
+  }
+}
