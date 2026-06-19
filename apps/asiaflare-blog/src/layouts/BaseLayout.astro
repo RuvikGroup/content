@@ -42,6 +42,17 @@ const pageTitle = `${title} — AsiaFlare Blog`;
     <meta name="twitter:description" content={description} />
     {image && <meta name="twitter:image" content={image} />}
 
+    <!-- Pagefind search UI -->
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+    <script src="/pagefind/pagefind-ui.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        if (typeof PagefindUI !== "undefined") {
+          new PagefindUI({ element: "#search", showSubResults: true });
+        }
+      });
+    </script>
+
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
       :root {
