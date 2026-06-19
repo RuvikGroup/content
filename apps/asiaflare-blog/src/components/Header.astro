@@ -1,4 +1,5 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header>
@@ -7,22 +8,26 @@
       <img src="/logo-light.svg" alt="AsiaFlare" height="32" class="logo logo-light" />
       <img src="/logo-dark.svg" alt="AsiaFlare" height="32" class="logo logo-dark" />
     </a>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/tags/">Tags</a></li>
-      <li><a href="/search/">Search</a></li>
-      <li><a href="/rss.xml">RSS</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/tags/">Tags</a></li>
+        <li><a href="/search/">Search</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+      <ThemeToggle />
+    </div>
   </nav>
 </header>
 
 <style>
   header {
     border-bottom: 1px solid var(--color-border);
-    background: #fff;
+    background: var(--color-bg-surface);
     position: sticky;
     top: 0;
     z-index: 10;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
   }
   nav {
     max-width: var(--max-width);
@@ -31,14 +36,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
   }
-  .logo-link { text-decoration: none; display: flex; align-items: center; }
+  .logo-link { text-decoration: none; display: flex; align-items: center; flex-shrink: 0; }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
   .logo { display: block; }
   .logo-dark { display: none; }
-  @media (prefers-color-scheme: dark) {
-    .logo-light { display: none; }
-    .logo-dark { display: block; }
-  }
+  [data-theme='dark'] .logo-light { display: none; }
+  [data-theme='dark'] .logo-dark { display: block; }
   ul {
     list-style: none;
     display: flex;

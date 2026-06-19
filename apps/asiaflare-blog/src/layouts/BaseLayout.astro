@@ -46,19 +46,50 @@ const pageTitle = `${title} — AsiaFlare Blog`;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+    <!-- Prevent flash of wrong theme by applying preference before paint -->
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem('theme-preference') || 'system';
+        var dark = stored === 'dark' ||
+          (stored === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      })();
+    </script>
+
     <slot name="head" />
 
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      /* Light theme (default) */
       :root {
         --color-primary: #16a34a;
+        --color-primary-dark: #4ade80;
         --color-text: #1a1a2e;
         --color-muted: #6b7280;
         --color-bg: #fafafa;
+        --color-bg-surface: #ffffff;
         --color-border: #e5e7eb;
+        --color-tag-bg: #dcfce7;
+        --color-tag-text: #15803d;
+        --color-tag-hover: #bbf7d0;
         --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
         --max-width: 1100px;
       }
+
+      /* Dark theme */
+      [data-theme='dark'] {
+        --color-primary: #4ade80;
+        --color-text: #f1f5f9;
+        --color-muted: #94a3b8;
+        --color-bg: #0f172a;
+        --color-bg-surface: #1e293b;
+        --color-border: #334155;
+        --color-tag-bg: #14532d;
+        --color-tag-text: #86efac;
+        --color-tag-hover: #166534;
+      }
+
       body {
         font-family: var(--font-sans);
         background: var(--color-bg);
@@ -67,10 +98,22 @@ const pageTitle = `${title} — AsiaFlare Blog`;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        transition: background-color 0.2s ease, color 0.2s ease;
       }
       main { flex: 1; width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 2rem 1rem; }
       a { color: var(--color-primary); text-decoration: none; }
       a:hover { text-decoration: underline; }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+        border-width: 0;
+      }
     </style>
   </head>
   <body>

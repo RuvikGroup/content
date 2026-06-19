@@ -1,4 +1,5 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <header>
@@ -6,21 +7,25 @@
     <a href="/" class="logo-text-fallback" aria-label="LatinFlare Blog">
       <span class="lf-icon">🔥</span> LatinFlare
     </a>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/tags/">Tags</a></li>
-      <li><a href="/rss.xml">RSS</a></li>
-    </ul>
+    <div class="nav-right">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/tags/">Tags</a></li>
+        <li><a href="/rss.xml">RSS</a></li>
+      </ul>
+      <ThemeToggle />
+    </div>
   </nav>
 </header>
 
 <style>
   header {
     border-bottom: 1px solid var(--color-border);
-    background: #fff;
+    background: var(--color-bg-surface);
     position: sticky;
     top: 0;
     z-index: 10;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
   }
   nav {
     max-width: var(--max-width);
@@ -29,6 +34,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
   }
   .logo-text-fallback {
     font-size: 1.1rem;
@@ -38,9 +44,11 @@
     display: flex;
     align-items: center;
     gap: 0.3rem;
+    flex-shrink: 0;
   }
   .logo-text-fallback:hover { text-decoration: none; opacity: 0.85; }
   .lf-icon { font-size: 1.2rem; }
+  .nav-right { display: flex; align-items: center; gap: 1.5rem; }
   ul {
     list-style: none;
     display: flex;

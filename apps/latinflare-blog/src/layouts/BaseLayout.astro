@@ -46,17 +46,49 @@ const pageTitle = `${title} — LatinFlare Blog`;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
+    <!-- Prevent flash of wrong theme by applying preference before paint -->
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem('theme-preference') || 'system';
+        var dark = stored === 'dark' ||
+          (stored === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+      })();
+    </script>
+
+    <slot name="head" />
+
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      /* Light theme (default) */
       :root {
         --color-primary: #dc2626;
         --color-text: #1a1a2e;
         --color-muted: #6b7280;
         --color-bg: #fafafa;
+        --color-bg-surface: #ffffff;
         --color-border: #e5e7eb;
+        --color-tag-bg: #fee2e2;
+        --color-tag-text: #b91c1c;
+        --color-tag-hover: #fca5a5;
         --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
         --max-width: 1100px;
       }
+
+      /* Dark theme — from Flutter LatinFlare dark config */
+      [data-theme='dark'] {
+        --color-primary: #f87171;
+        --color-text: #f1f5f9;
+        --color-muted: #94a3b8;
+        --color-bg: #1c1a20;
+        --color-bg-surface: #2a2733;
+        --color-border: #3d3a47;
+        --color-tag-bg: #7f1d1d;
+        --color-tag-text: #fca5a5;
+        --color-tag-hover: #991b1b;
+      }
+
       body {
         font-family: var(--font-sans);
         background: var(--color-bg);
@@ -65,10 +97,22 @@ const pageTitle = `${title} — LatinFlare Blog`;
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        transition: background-color 0.2s ease, color 0.2s ease;
       }
       main { flex: 1; width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 2rem 1rem; }
       a { color: var(--color-primary); text-decoration: none; }
       a:hover { text-decoration: underline; }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0,0,0,0);
+        white-space: nowrap;
+        border-width: 0;
+      }
     </style>
   </head>
   <body>
