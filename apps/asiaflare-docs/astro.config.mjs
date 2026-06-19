@@ -9,6 +9,12 @@ export default defineConfig({
 		starlight({
 			title: 'AsiaFlare Help Centre',
 			description: 'Help and guides for AsiaFlare dating app',
+			logo: {
+				light: '/logo/light.svg',
+				dark: '/logo/dark.svg',
+				alt: 'AsiaFlare',
+				replacesTitle: true,
+			},
 			customCss: ['./src/styles/custom.css'],
 			head: [
 				{

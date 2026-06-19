@@ -9,6 +9,12 @@ export default defineConfig({
 		starlight({
 			title: 'LatinFlare Help Centre',
 			description: 'Help and guides for LatinFlare dating app',
+			logo: {
+				light: '/logo/light.svg',
+				dark: '/logo/dark.svg',
+				alt: 'LatinFlare',
+				replacesTitle: true,
+			},
 			customCss: ['./src/styles/custom.css'],
 			head: [
 				{
