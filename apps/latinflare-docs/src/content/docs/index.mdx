@@ -13,47 +13,31 @@ hero:
       icon: right-arrow
       variant: primary
     - text: Contact support
-      link: mailto:latinflare@support.ruvikgroup.com
+      link: mailto:hello@latinflare.com
       icon: external
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
 
 ## Getting started
 
 <CardGrid>
-  <Card title="Set up your profile" icon="pencil" href="/setting-up-profile/">
-    Complete your profile to start getting matches.
-  </Card>
-  <Card title="Add photos" icon="add-document" href="/adding-photos/">
-    Upload and manage your profile photos.
-  </Card>
-  <Card title="How matching works" icon="heart" href="/how-matching-works/">
-    Understand likes, super likes, and how you get matched.
-  </Card>
-  <Card title="Premium subscription" icon="star" href="/premium-vip/">
-    See what's included in Premium and VIP.
-  </Card>
+  <LinkCard title="Set up your profile" href="/setting-up-profile/" description="Complete your profile to start getting matches." />
+  <LinkCard title="Add photos" href="/adding-photos/" description="Upload and manage your profile photos." />
+  <LinkCard title="How matching works" href="/how-matching-works/" description="Understand likes, super likes, and how you get matched." />
+  <LinkCard title="Premium subscription" href="/premium-vip/" description="See what's included in Premium and VIP." />
 </CardGrid>
 
 ## Common topics
 
 <CardGrid>
-  <Card title="Can't log in?" icon="warning" href="/login-issues/">
-    Fix sign-in problems with your account.
-  </Card>
-  <Card title="App not working?" icon="setting" href="/app-not-working/">
-    Troubleshoot technical issues.
-  </Card>
-  <Card title="Cancel subscription" icon="close" href="/cancel-subscription/">
-    How to cancel on iOS or Android.
-  </Card>
-  <Card title="Staying safe" icon="approve-check-circle" href="/staying-safe/">
-    Tips for safe first meetings.
-  </Card>
+  <LinkCard title="Can't log in?" href="/login-issues/" description="Fix sign-in problems with your account." />
+  <LinkCard title="App not working?" href="/app-not-working/" description="Troubleshoot technical issues." />
+  <LinkCard title="Cancel subscription" href="/cancel-subscription/" description="How to cancel on iOS or Android." />
+  <LinkCard title="Staying safe" href="/staying-safe/" description="Tips for safe first meetings." />
 </CardGrid>
 
 ## Need more help?
 
-Contact us at [latinflare@support.ruvikgroup.com](mailto:latinflare@support.ruvikgroup.com) — we're happy to help.
+Contact us at [hello@latinflare.com](mailto:hello@latinflare.com) — we're happy to help.
