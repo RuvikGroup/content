@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "cp ../../packages/cms-config/config.yml public/admin/config.yml",
     "build": "astro build",
     "preview": "astro preview",
     "test": "vitest run"
@@ -11,8 +12,8 @@
   "dependencies": {
     "@astrojs/rss": "^4.0.11",
     "@astrojs/sitemap": "^3.3.0",
+    "@ruvikgroup/cms-config": "workspace:*",
     "astro": "^6.4.5",
-    "astro-seo": "^0.8.4",
     "sharp": "^0.34.5"
   },
   "devDependencies": {

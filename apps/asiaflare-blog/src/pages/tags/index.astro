@@ -19,22 +19,48 @@ const tags = [...tagCounts.entries()].sort((a, b) => b[1] - a[1]);
 <BaseLayout title="Tags" description="Browse all topics on the AsiaFlare Blog.">
   <Header slot="header" />
 
-  <h1 style="font-size:2rem;font-weight:800;margin-bottom:0.5rem;">All Tags</h1>
-  <p style="color:var(--color-muted);margin-bottom:2rem;">Browse posts by topic.</p>
+  <h1 class="page-title">All Tags</h1>
+  <p class="page-desc">Browse posts by topic.</p>
 
-  <div style="display:flex;flex-wrap:wrap;gap:0.75rem;">
+  <div class="tag-grid">
     {tags.map(([tag, count]) => (
       <a
         href={`/tags/${tag}/`}
-        style="display:inline-flex;align-items:center;gap:0.4rem;background:#fff;border:1px solid var(--color-border);border-radius:9999px;padding:0.4rem 1rem;font-size:0.9rem;font-weight:500;"
+        class="tag-link"
+        aria-label={`View posts tagged ${tag}`}
       >
         #{tag}
-        <span style="background:#fee2e2;color:#b91c1c;border-radius:9999px;padding:0.1rem 0.5rem;font-size:0.75rem;">
-          {count}
-        </span>
+        <span class="tag-count">{count}</span>
       </a>
     ))}
   </div>
 
   <Footer slot="footer" />
 </BaseLayout>
+
+<style>
+  .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .page-desc { color: var(--color-muted); margin-bottom: 2rem; }
+  .tag-grid { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .tag-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    padding: 0.4rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--color-text);
+  }
+  .tag-link:hover { border-color: var(--color-primary); color: var(--color-primary); }
+  .tag-count {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-radius: 9999px;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.75rem;
+  }
+</style>

@@ -17,20 +17,25 @@ const hasMore = sorted.length > PAGE_SIZE;
 <BaseLayout title="Blog" description="Dating tips, success stories, and guides for Asian singles.">
   <Header slot="header" />
 
-  <h1 style="font-size:2rem;font-weight:800;margin-bottom:0.5rem;">AsiaFlare Blog</h1>
-  <p style="color:var(--color-muted);margin-bottom:2rem;">
-    Dating tips, success stories, and guides for Asian singles.
-  </p>
+  <h1 class="page-title">AsiaFlare Blog</h1>
+  <p class="page-desc">Dating tips, success stories, and guides for Asian singles.</p>
 
-  <div style="display:grid;gap:1.5rem;">
+  <div class="post-grid">
     {page1.map((post) => <PostCard post={post} />)}
   </div>
 
   {hasMore && (
-    <nav style="margin-top:2.5rem;text-align:right;">
+    <nav class="pagination">
       <a href="/page/2/">Older posts &rarr;</a>
     </nav>
   )}
 
   <Footer slot="footer" />
 </BaseLayout>
+
+<style>
+  .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+  .page-desc { color: var(--color-muted); margin-bottom: 2rem; }
+  .post-grid { display: grid; gap: 1.5rem; }
+  .pagination { margin-top: 2.5rem; text-align: right; }
+</style>

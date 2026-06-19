@@ -10,24 +10,44 @@ interface Props {
 
 const { post } = Astro.props;
 const { title, description, pubDate, updatedDate, author, tags, heroImage } = post.data;
-const formattedPubDate = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-const formattedUpdatedDate = updatedDate?.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+const dateOpts: Intl.DateTimeFormatOptions = {
+  timeZone: 'UTC',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+};
+const formattedPubDate = pubDate.toLocaleDateString('en-US', dateOpts);
+const formattedUpdatedDate = updatedDate?.toLocaleDateString('en-US', dateOpts);
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image={heroImage}>
   <Header slot="header" />
   <article>
-    {heroImage && <img src={heroImage} alt={title} style="width:100%;border-radius:8px;margin-bottom:1.5rem;" />}
-    <header style="margin-bottom:2rem;">
-      <h1 style="font-size:2rem;font-weight:800;line-height:1.2;margin-bottom:0.75rem;">{title}</h1>
-      <p style="color:var(--color-muted);font-size:0.875rem;">
+    {heroImage && (
+      <img
+        src={heroImage}
+        alt={title}
+        class="hero-image"
+        onerror="this.style.display='none'"
+      />
+    )}
+    <header class="post-header">
+      <h1>{title}</h1>
+      <p class="meta">
         By {author} &middot; <time datetime={pubDate.toISOString()}>{formattedPubDate}</time>
-        {updatedDate && <span> &middot; Updated <time datetime={updatedDate.toISOString()}>{formattedUpdatedDate}</time></span>}
+        {updatedDate && (
+          <span> &middot; Updated <time datetime={updatedDate.toISOString()}>{formattedUpdatedDate}</time></span>
+        )}
       </p>
       {tags.length > 0 && (
-        <div style="margin-top:0.75rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
+        <div class="tag-list">
           {tags.map((tag) => (
-            <a href={`/tags/${tag}/`} style="font-size:0.8rem;background:#fee2e2;color:#b91c1c;padding:0.2rem 0.6rem;border-radius:9999px;">
+            <a
+              href={`/tags/${tag}/`}
+              class="tag-pill"
+              aria-label={`View posts tagged ${tag}`}
+            >
               #{tag}
             </a>
           ))}
@@ -42,6 +62,23 @@ const formattedUpdatedDate = updatedDate?.toLocaleDateString('en-US', { year: 'n
 </BaseLayout>
 
 <style>
+  .hero-image { width: 100%; border-radius: 8px; margin-bottom: 1.5rem; }
+
+  .post-header { margin-bottom: 2rem; }
+  .post-header h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.75rem; }
+  .meta { color: var(--color-muted); font-size: 0.875rem; }
+
+  .tag-list { margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag-pill {
+    font-size: 0.8rem;
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+    text-decoration: none;
+  }
+  .tag-pill:hover { background: #fca5a5; }
+
   .prose { line-height: 1.7; font-size: 1.05rem; }
   .prose :global(h2) { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 0.75rem; }
   .prose :global(h3) { font-size: 1.2rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }

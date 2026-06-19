@@ -7,7 +7,12 @@ interface Props {
 
 const { post } = Astro.props;
 const { title, description, pubDate, author, tags } = post.data;
-const formattedDate = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+const formattedDate = pubDate.toLocaleDateString('en-US', {
+  timeZone: 'UTC',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
 ---
 
 <article class="card">
@@ -21,11 +26,23 @@ const formattedDate = pubDate.toLocaleDateString('en-US', { year: 'numeric', mon
   {tags.length > 0 && (
     <div class="tags">
       {tags.map((tag) => (
-        <a href={`/tags/${tag}/`} class="tag">#{tag}</a>
+        <a
+          href={`/tags/${tag}/`}
+          class="tag"
+          aria-label={`View posts tagged ${tag}`}
+        >
+          #{tag}
+        </a>
       ))}
     </div>
   )}
-  <a href={`/${post.id}/`} class="read-more">Read more &rarr;</a>
+  <a
+    href={`/${post.id}/`}
+    class="read-more"
+    aria-label={`Read more: ${title}`}
+  >
+    Read more &rarr;
+  </a>
 </article>
 
 <style>
@@ -40,12 +57,7 @@ const formattedDate = pubDate.toLocaleDateString('en-US', { year: 'numeric', mon
     gap: 0.5rem;
   }
   .title-link { text-decoration: none; }
-  .title-link h2 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-text);
-    line-height: 1.3;
-  }
+  .title-link h2 { font-size: 1.25rem; font-weight: 700; color: var(--color-text); line-height: 1.3; }
   .title-link:hover h2 { color: var(--color-primary); }
   .meta { font-size: 0.8rem; color: var(--color-muted); }
   .description { color: var(--color-text); font-size: 0.95rem; }
