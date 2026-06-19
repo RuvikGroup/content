@@ -1,0 +1,13 @@
+{
+  "name": "@ruvikgroup/cms-auth",
+  "version": "0.0.1",
+  "private": true,
+  "description": "GitHub OAuth proxy for Decap CMS",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
