@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  deploy:
+  deploy-docs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -26,11 +26,39 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build
-        run: pnpm run build
+      - name: Build docs
+        run: pnpm --filter asiaflare-docs build
 
       - name: Deploy to Cloudflare Pages
         run: npx wrangler@latest pages deploy apps/asiaflare-docs/dist --project-name=ruvikgroup-asiaflare-docs --branch=${{ github.ref_name }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+  deploy-blog:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Deploy asiaflare-blog
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build blog
+        run: pnpm --filter asiaflare-blog build
+
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler@latest pages deploy apps/asiaflare-blog/dist --project-name=ruvikgroup-asiaflare-blog --branch=${{ github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
