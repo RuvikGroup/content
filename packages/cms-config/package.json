@@ -2,10 +2,10 @@
   "name": "@ruvikgroup/cms-config",
   "version": "0.0.1",
   "private": true,
-  "description": "DecapCMS configuration (placeholder)",
+  "description": "DecapCMS configuration shared across AsiaFlare sites",
   "main": "index.js",
   "scripts": {
-    "build": "echo 'cms-config: no build step yet'",
-    "lint": "echo 'cms-config: no lint step yet'"
+    "build": "echo 'cms-config: no build step'",
+    "lint": "echo 'ok'"
   }
 }

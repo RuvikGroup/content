@@ -1,0 +1,55 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'AsiaFlare Blog — dating tips, success stories, and guides for Asian singles.' } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="AsiaFlare Blog" href="/rss.xml" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} — AsiaFlare Blog</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      :root {
+        --color-primary: #e85d4a;
+        --color-text: #1a1a2e;
+        --color-muted: #6b7280;
+        --color-bg: #fafafa;
+        --color-border: #e5e7eb;
+        --font-sans: system-ui, -apple-system, sans-serif;
+        --max-width: 780px;
+      }
+      body {
+        font-family: var(--font-sans);
+        background: var(--color-bg);
+        color: var(--color-text);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      main { flex: 1; width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 2rem 1rem; }
+      a { color: var(--color-primary); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+    </style>
+  </head>
+  <body>
+    <slot name="header" />
+    <main>
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>
