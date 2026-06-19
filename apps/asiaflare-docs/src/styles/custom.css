@@ -1,0 +1,11 @@
+/* AsiaFlare green brand colour */
+:root {
+  --sl-color-accent-low: #bbf7d0;
+  --sl-color-accent: #16a34a;
+  --sl-color-accent-high: #14532d;
+}
+:root[data-theme='dark'] {
+  --sl-color-accent-low: #14532d;
+  --sl-color-accent: #22c55e;
+  --sl-color-accent-high: #bbf7d0;
+}
