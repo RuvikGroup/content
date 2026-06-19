@@ -3,7 +3,9 @@
 
 <header>
   <nav>
-    <a href="/" class="logo">LatinFlare Blog</a>
+    <a href="/" class="logo-text-fallback" aria-label="LatinFlare Blog">
+      <span class="lf-icon">🔥</span> LatinFlare
+    </a>
     <ul>
       <li><a href="/">Home</a></li>
       <li><a href="/tags/">Tags</a></li>
@@ -28,12 +30,17 @@
     align-items: center;
     justify-content: space-between;
   }
-  .logo {
+  .logo-text-fallback {
     font-size: 1.1rem;
     font-weight: 800;
     color: var(--color-primary);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
   }
+  .logo-text-fallback:hover { text-decoration: none; opacity: 0.85; }
+  .lf-icon { font-size: 1.2rem; }
   ul {
     list-style: none;
     display: flex;
