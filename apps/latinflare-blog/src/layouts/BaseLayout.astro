@@ -49,10 +49,14 @@ const pageTitle = `${title} — LatinFlare Blog`;
     <!-- Prevent flash of wrong theme by applying preference before paint -->
     <script is:inline>
       (function () {
-        var stored = localStorage.getItem('theme-preference') || 'system';
-        var dark = stored === 'dark' ||
-          (stored === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        try {
+          var stored = localStorage.getItem('theme-preference') || 'system';
+          var dark = stored === 'dark' ||
+            (stored === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        } catch (_) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
       })();
     </script>
 
@@ -64,11 +68,13 @@ const pageTitle = `${title} — LatinFlare Blog`;
       /* Light theme (default) */
       :root {
         --color-primary: #dc2626;
+        --color-on-primary: #ffffff;
         --color-text: #1a1a2e;
         --color-muted: #6b7280;
         --color-bg: #fafafa;
         --color-bg-surface: #ffffff;
         --color-border: #e5e7eb;
+        --color-code-bg: #fff5f5;
         --color-tag-bg: #fee2e2;
         --color-tag-text: #b91c1c;
         --color-tag-hover: #fca5a5;
@@ -79,11 +85,13 @@ const pageTitle = `${title} — LatinFlare Blog`;
       /* Dark theme — from Flutter LatinFlare dark config */
       [data-theme='dark'] {
         --color-primary: #f87171;
+        --color-on-primary: #450a0a;
         --color-text: #f1f5f9;
         --color-muted: #94a3b8;
         --color-bg: #1c1a20;
         --color-bg-surface: #2a2733;
         --color-border: #3d3a47;
+        --color-code-bg: #2d1a1a;
         --color-tag-bg: #7f1d1d;
         --color-tag-text: #fca5a5;
         --color-tag-hover: #991b1b;

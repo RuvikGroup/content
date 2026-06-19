@@ -1,22 +1,22 @@
 ---
 ---
 
-<div class="theme-toggle" role="group" aria-label="Color theme">
-  <button class="theme-btn" data-theme-value="light" aria-pressed="false" title="Light mode">
+<div class="theme-toggle" role="radiogroup" aria-label="Color theme">
+  <button class="theme-btn" role="radio" data-theme-value="light" aria-checked="false" title="Light mode">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <circle cx="12" cy="12" r="4"/>
       <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
     </svg>
     <span class="sr-only">Light</span>
   </button>
-  <button class="theme-btn" data-theme-value="system" aria-pressed="false" title="System default">
+  <button class="theme-btn" role="radio" data-theme-value="system" aria-checked="false" title="System default">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <rect x="2" y="3" width="20" height="14" rx="2"/>
       <path d="M8 21h8M12 17v4"/>
     </svg>
     <span class="sr-only">System</span>
   </button>
-  <button class="theme-btn" data-theme-value="dark" aria-pressed="false" title="Dark mode">
+  <button class="theme-btn" role="radio" data-theme-value="dark" aria-checked="false" title="Dark mode">
     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>
     </svg>
@@ -29,9 +29,10 @@
     display: flex;
     align-items: center;
     gap: 2px;
-    background: var(--color-border);
+    background: var(--color-code-bg);
     border-radius: 8px;
     padding: 3px;
+    border: 1px solid var(--color-border);
   }
   .theme-btn {
     display: flex;
@@ -48,21 +49,39 @@
   }
   .theme-btn:hover {
     color: var(--color-text);
-    background: var(--color-bg);
+    background: var(--color-bg-surface);
   }
-  .theme-btn[aria-pressed='true'] {
-    background: var(--color-bg);
+  .theme-btn:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 1px;
+  }
+  .theme-btn[aria-checked='true'] {
+    background: var(--color-bg-surface);
     color: var(--color-primary);
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
   }
 </style>
 
 <script>
+  // Storage key must match the anti-FOUC script in BaseLayout.astro
   const STORAGE_KEY = 'theme-preference';
 
   function getStoredTheme(): 'light' | 'dark' | 'system' {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored === 'light' || stored === 'dark' || stored === 'system') return stored;
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+      if (stored === 'light' || stored === 'dark' || stored === 'system') return stored;
+    } catch (_) {}
     return 'system';
   }
 
@@ -78,7 +97,7 @@
     document.documentElement.setAttribute('data-theme', resolved);
 
     document.querySelectorAll<HTMLButtonElement>('.theme-btn').forEach((btn) => {
-      btn.setAttribute('aria-pressed', String(btn.dataset.themeValue === pref));
+      btn.setAttribute('aria-checked', String(btn.dataset.themeValue === pref));
     });
   }
 
@@ -89,7 +108,9 @@
     document.querySelectorAll<HTMLButtonElement>('.theme-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
         const value = btn.dataset.themeValue as 'light' | 'dark' | 'system';
-        localStorage.setItem(STORAGE_KEY, value);
+        try {
+          localStorage.setItem(STORAGE_KEY, value);
+        } catch (_) {}
         applyTheme(value);
       });
     });

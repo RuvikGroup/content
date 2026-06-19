@@ -44,6 +44,11 @@ import ThemeToggle from './ThemeToggle.astro';
   .logo-dark { display: none; }
   [data-theme='dark'] .logo-light { display: none; }
   [data-theme='dark'] .logo-dark { display: block; }
+  /* Fallback when JS hasn't set data-theme yet (no-JS, CSP) */
+  @media (prefers-color-scheme: dark) {
+    html:not([data-theme]) .logo-light { display: none; }
+    html:not([data-theme]) .logo-dark { display: block; }
+  }
   ul {
     list-style: none;
     display: flex;
