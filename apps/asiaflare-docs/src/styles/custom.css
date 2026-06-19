@@ -1,16 +1,16 @@
-/* AsiaFlare brand — green */
+/* AsiaFlare brand — deep red #c62828 */
 :root {
-  --sl-color-accent-low: #bbf7d0;
-  --sl-color-accent: #16a34a;
-  --sl-color-accent-high: #14532d;
+  --sl-color-accent-low: #ffcdd2;
+  --sl-color-accent: #c62828;
+  --sl-color-accent-high: #7f1616;
   --sl-font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --sl-text-body-sm: 0.875rem;
 }
 
 :root[data-theme='dark'] {
-  --sl-color-accent-low: #14532d;
-  --sl-color-accent: #22c55e;
-  --sl-color-accent-high: #bbf7d0;
+  --sl-color-accent-low: #7f1616;
+  --sl-color-accent: #ef9a9a;
+  --sl-color-accent-high: #ffcdd2;
 }
 
 /* Sharper header */
