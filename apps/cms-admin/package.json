@@ -1,0 +1,14 @@
+{
+  "name": "cms-admin",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "prebuild": "cp ../../packages/cms-config/config.yml public/admin/config.yml",
+    "build": "mkdir -p dist && cp -r public/. dist/",
+    "dev": "echo 'No dev server for cms-admin — deploy and visit /admin'",
+    "lint": "echo 'ok'"
+  },
+  "dependencies": {
+    "@ruvikgroup/cms-config": "workspace:*"
+  }
+}
