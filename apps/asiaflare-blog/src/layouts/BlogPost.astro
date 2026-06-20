@@ -100,15 +100,68 @@ const pageTitle = encodeURIComponent(title);
   }
   .tag-pill:hover { background: #ef9a9a; }
 
+  article { max-width: 720px; margin: 0 auto; }
+
   .prose { line-height: 1.7; font-size: 1.05rem; }
   .prose :global(h2) { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 0.75rem; }
   .prose :global(h3) { font-size: 1.2rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
   .prose :global(p) { margin-bottom: 1rem; }
   .prose :global(ul), .prose :global(ol) { margin: 0 0 1rem 1.5rem; }
-  .prose :global(li) { margin-bottom: 0.25rem; }
+  .prose :global(li) { margin-bottom: 0.35rem; }
   .prose :global(strong) { font-weight: 700; }
+  .prose :global(a) { color: var(--color-primary); text-decoration: underline; text-underline-offset: 2px; }
+  .prose :global(a:hover) { text-decoration-thickness: 2px; }
   .prose :global(code) { background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 3px; font-size: 0.9em; }
   .prose :global(pre) { background: #1e1e2e; color: #cdd6f4; padding: 1rem; border-radius: 8px; overflow-x: auto; margin-bottom: 1rem; }
+  .prose :global(pre code) { background: none; padding: 0; border-radius: 0; font-size: 0.9em; }
+
+  .prose :global(blockquote) {
+    border-left: 4px solid var(--color-primary);
+    padding: 0.75rem 1.25rem;
+    margin: 1.5rem 0;
+    background: #f9fafb;
+    border-radius: 0 8px 8px 0;
+    color: #374151;
+    font-style: italic;
+  }
+  .prose :global(blockquote p:last-child) { margin-bottom: 0; }
+
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    font-size: 0.95rem;
+  }
+  .prose :global(th) {
+    text-align: left;
+    font-weight: 700;
+    padding: 0.65rem 0.75rem;
+    border-bottom: 2px solid var(--color-primary);
+    background: #f9fafb;
+  }
+  .prose :global(td) {
+    padding: 0.55rem 0.75rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .prose :global(tr:last-child td) { border-bottom: none; }
+
+  .prose :global(hr) {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 2rem 0;
+  }
+
+  .prose :global(img) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+  }
+
+  .prose :global(input[type="checkbox"]) {
+    margin-right: 0.4rem;
+    accent-color: var(--color-primary);
+  }
 
   .share-links {
     margin-top: 2.5rem;
