@@ -19,11 +19,23 @@ export default defineConfig({
 			head: [
 				{
 					tag: 'link',
-					attrs: {
-						rel: 'icon',
-						href: '/favicon.svg',
-						type: 'image/svg+xml',
-					},
+					attrs: { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
+				},
+				{
+					tag: 'link',
+					attrs: { rel: 'icon', href: '/favicon-32x32.png', type: 'image/png', sizes: '32x32' },
+				},
+				{
+					tag: 'link',
+					attrs: { rel: 'icon', href: '/favicon-16x16.png', type: 'image/png', sizes: '16x16' },
+				},
+				{
+					tag: 'link',
+					attrs: { rel: 'apple-touch-icon', href: '/apple-touch-icon.png', sizes: '180x180' },
+				},
+				{
+					tag: 'meta',
+					attrs: { name: 'theme-color', content: '#4F378B' },
 				},
 			],
 			social: [
