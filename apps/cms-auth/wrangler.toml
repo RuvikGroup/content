@@ -1,0 +1,11 @@
+name = "cms-auth"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+account_id = "56f9afbb6f0bc5c1214d018b7cab395b"
+
+[vars]
+# GITHUB_CLIENT_ID and GITHUB_CLIENT_SECRET are set as Worker secrets (not here)
+
+[[routes]]
+pattern = "cms-auth.ruvikgroup.com/*"
+zone_name = "ruvikgroup.com"

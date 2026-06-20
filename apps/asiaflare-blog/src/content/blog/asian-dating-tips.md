@@ -21,104 +21,51 @@ This is the single most important piece of advice we can give. The temptation to
 >
 > — *AsiaFlare Community Survey, 2026*
 
-Here's what authenticity looks like in practice:
+Authenticity means using recent photos on your profile, talking about things you genuinely care about, and admitting when you don't know something. Curiosity beats pretending every time.
 
-- **Use recent photos** on your profile (within the last 6 months)
-- **Talk about things you genuinely care about**, not things you think sound impressive
-- **Admit when you don't know something** — curiosity beats pretending every time
-
-### What to avoid
-
-Don't try to be someone you're not. If you hate hiking, don't pretend you spend every weekend on a trail. The truth comes out eventually, and starting with a lie — even a small one — erodes trust fast.
+The people who come across as most attractive aren't the ones with the most impressive credentials — they're the ones who seem genuinely at ease with who they are. That energy is contagious, and it's what makes someone want a second date.
 
 ## 2. Choose a Relaxed Venue
 
-The venue matters more than most people think. A great venue takes pressure off the conversation and gives you something to *do* together, not just sit across from each other.
+The venue matters more than most people think. A great first-date spot takes pressure off the conversation and gives you something to *do* together.
 
-### Our top venue picks
+Coffee shops are ideal for weekday dates — they're low-commitment, easy to extend if things are going well, and easy to wrap up if they're not. Night markets or food streets work brilliantly too: there's always something to look at, comment on, or try, which means the conversation never has to carry all the weight.
 
-| Venue Type | Why It Works | Best For |
-|---|---|---|
-| Coffee shop | Low commitment, easy to extend or cut short | Weekday dates |
-| Night market / food street | Lots to explore, natural conversation starters | Adventurous eaters |
-| Art gallery or museum | Built-in topics to discuss | Culture lovers |
-| Park or waterfront walk | Movement reduces anxiety, beautiful setting | Warm weather dates |
-| Dessert bar | Sweet, casual, lower time commitment than dinner | Evening dates |
+What doesn't work: movies. You can't talk during the film, which defeats the purpose of a first date.
 
-> **Pro tip:** Avoid movies on a first date — you can't talk during the film, and it doesn't help you get to know each other.
+If the weather's good, a park or waterfront walk is underrated. Moving side by side, rather than facing each other across a table, actually reduces social anxiety — something researchers have noticed in settings from therapy to job interviews.
 
-## 3. Ask Questions (and Actually Listen)
+## 3. Ask Questions and Actually Listen
 
-The best conversationalists aren't the people who talk the most — they're the ones who ask the best questions. On a first date, **genuine curiosity is magnetic**.
+The best conversationalists aren't the people who talk the most — they're the ones who ask the best questions. On a first date, genuine curiosity is magnetic.
 
-Here are a few conversation starters that go beyond "so, what do you do?":
+Go beyond "so, what do you do?" Try things like:
 
-1. *What's something you've been really into lately?*
-2. *If you could live anywhere in the world for a year, where would you go?*
-3. *What's the best meal you've had recently?*
-4. *What does a perfect weekend look like for you?*
-5. *Is there something you've always wanted to try but haven't yet?*
+- *What's something you've been really into lately?*
+- *If you could live anywhere in the world for a year, where would you go?*
+- *What does a perfect weekend look like for you?*
 
-### The 70/30 rule
-
-Aim to listen about **70%** of the time and talk about **30%**. This sounds counterintuitive — don't you want them to know about *you*? Yes, but people feel most connected to someone who makes them feel heard. You'll get your turn.
-
-Things to look for while listening:
-
-- [ ] Do they light up when they talk about certain topics?
-- [ ] Are there shared interests you can build on?
-- [ ] Do they ask you questions back?
+Then actually listen. Aim to hear them out fully before responding, and build on what they said rather than pivoting to a new topic. People feel most connected to someone who makes them feel heard — and that impression stays with them long after the date is over.
 
 ## 4. Put Your Phone Away
 
-This one is simple: **your phone should not be on the table**.
+This one is simple: your phone should not be on the table.
 
-Not face-down. Not on silent. Not "just in case." Put it in your pocket or bag and leave it there.
+Not face-down. Not on silent. In your pocket or bag — and leave it there.
 
-Nothing kills first-date chemistry faster than a glowing screen. It signals that something else — *anything* else — might be more interesting than the person sitting across from you.
-
-The only exception:
-
-```
-📱 Acceptable phone use on a first date:
-   - Splitting the bill (payment apps)
-   - Showing a photo that's relevant to the conversation
-   - Looking up directions together
-
-❌ Not acceptable:
-   - "Just checking one thing real quick"
-   - Scrolling while they're in the restroom
-   - Taking a call that isn't an emergency
-```
+Nothing kills first-date chemistry faster than a glowing screen. It signals that something else might be more interesting than the person in front of you, even when you don't mean it that way. The habit is so automatic for most people that it takes a conscious decision to break — but making that decision is one of the highest-signal things you can do on a first date.
 
 ## 5. Be Respectful of Cultural Nuances
 
-AsiaFlare connects people across a rich tapestry of cultures — from Tokyo to Manila, Seoul to Jakarta, and everywhere in between. What feels natural in one culture might land differently in another.
+AsiaFlare connects people across a rich mix of cultures — from Tokyo to Manila, Seoul to Jakarta, and everywhere in between. What feels natural in one culture can land differently in another, and being aware of that is part of showing respect.
 
-A few things to keep in mind:
+On the question of paying the bill: in some cultures, the person who invited pays; in others, splitting is expected. When in doubt, offer to pay but don't insist if your date wants to split. The goal is generosity, not a power move.
 
-- **Paying the bill** — In some cultures, the person who initiated the date pays. In others, splitting is expected. When in doubt, *offer* to pay but don't insist if they want to split.
-- **Physical affection** — Some people are comfortable with a hug on the first date; others prefer a wave or a bow. Follow their lead.
-- **Family talk** — In many Asian cultures, family is central to identity. Showing interest in their family is a sign of respect, not nosiness. But don't push if they set a boundary.
-- **Food and dietary customs** — Be aware of religious or cultural dietary practices. ~~Ordering pork at a halal restaurant~~ is an easy mistake to avoid with a simple question: *"Is there anything you don't eat?"*
+On physical affection: some people are comfortable with a hug at the end of a first date, others prefer to keep things more reserved. Follow their lead rather than assuming.
 
-### A note on language
+On family: in many Asian cultures, family is central to identity. Showing genuine interest in their family background is a sign of respect, not nosiness — just be sensitive to the boundary if they change the subject.
 
-If you and your date speak different first languages, be patient. Communicating in a second language is *exhausting*, and small misunderstandings happen. What matters is the effort you both put in.
-
----
-
-## Quick Reference Card
-
-Here's a summary you can screenshot before your next date:
-
-| Tip | Key Takeaway |
-|-----|-------------|
-| **Be authentic** | Recent photos, genuine interests, no pretending |
-| **Pick a good venue** | Casual, conversation-friendly, low pressure |
-| **Ask great questions** | Be curious, listen 70% of the time |
-| **Phone away** | In your pocket, not on the table |
-| **Respect culture** | Follow their lead on customs and comfort |
+And if you and your date are communicating in a second language, be patient. It takes real effort, and small misunderstandings happen. What matters is the genuine attempt on both sides.
 
 ---
 
