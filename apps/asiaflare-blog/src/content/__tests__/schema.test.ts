@@ -99,4 +99,20 @@ describe('blog content collection schema', () => {
     });
     expect(result.success).toBe(true);
   });
+
+  it('rejects a relative heroImage path not starting with /', () => {
+    const result = blogSchema.safeParse({
+      ...validPost,
+      heroImage: 'images/hero.jpg',
+    });
+    expect(result.success).toBe(false);
+  });
+
+  it('rejects a non-string heroImage', () => {
+    const result = blogSchema.safeParse({
+      ...validPost,
+      heroImage: 42,
+    });
+    expect(result.success).toBe(false);
+  });
 });
