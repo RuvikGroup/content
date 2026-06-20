@@ -71,8 +71,8 @@ And if you and your date are communicating in a second language, be patient. It 
 
 ## Ready to Meet Someone?
 
-Your next great first date starts with a great match. Update your [AsiaFlare profile](https://asiaflareapp.com) with recent photos and a bio that sounds like you — not a resume.
+Your next great first date starts with a great match. Update your [AsiaFlare profile](https://asiaflareapp.com) with **recent photos** and a bio that sounds like *you* — not a resume.
 
-Good luck out there. We're rooting for you.
+Good luck out there. We're rooting for you. ❤️
 
-*Have a first-date story you want to share? Tag us — we love hearing from our community.*
+*Have a first-date story you want to share? Tag us on [Twitter/X](https://x.com/asiaflare) — we love hearing from our community.*
