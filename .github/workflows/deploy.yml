@@ -53,6 +53,12 @@ jobs:
           name: latinflare-blog-dist
           path: apps/latinflare-blog/dist
 
+      - name: Upload cms-admin dist
+        uses: actions/upload-artifact@v4
+        with:
+          name: cms-admin-dist
+          path: apps/cms-admin/dist
+
   deploy-asiaflare-docs:
     needs: build
     runs-on: ubuntu-latest
@@ -129,6 +135,26 @@ jobs:
 
       - name: Deploy to Cloudflare Pages
         run: npx wrangler@latest pages deploy dist --project-name=ruvikgroup-latinflare-blog --branch=${{ github.ref_name }}
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+  deploy-cms-admin:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Deploy cms-admin
+    steps:
+      - name: Download dist
+        uses: actions/download-artifact@v4
+        with:
+          name: cms-admin-dist
+          path: dist
+
+      - name: Deploy to Cloudflare Pages
+        run: npx wrangler@latest pages deploy dist --project-name=ruvikgroup-cms-admin --branch=${{ github.ref_name }}
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
