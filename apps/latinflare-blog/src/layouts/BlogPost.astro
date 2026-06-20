@@ -32,7 +32,7 @@ const pageTitle = encodeURIComponent(title);
         src={heroImage}
         alt={title}
         class="hero-image"
-        onerror="this.style.display='none'"
+        onerror="this.classList.add('hero-image--broken'); this.removeAttribute('src');"
       />
     )}
     <header class="post-header">
@@ -84,6 +84,7 @@ const pageTitle = encodeURIComponent(title);
 
 <style>
   .hero-image { width: 100%; border-radius: 8px; margin-bottom: 1.5rem; }
+  .hero-image--broken { display: none; }
 
   .post-header { margin-bottom: 2rem; }
   .post-header h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 0.75rem; }

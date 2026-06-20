@@ -4,6 +4,7 @@ description: "Make your first date memorable with these five practical tips tail
 pubDate: "2026-06-19"
 author: "LatinFlare Team"
 tags: ["dating-tips", "first-date"]
+heroImage: "/images/hero-dating-tips.jpg"
 ---
 
 First dates can be nerve-wracking. Here are five tips to help you make a great impression on LatinFlare:

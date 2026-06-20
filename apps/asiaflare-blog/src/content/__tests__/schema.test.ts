@@ -91,4 +91,12 @@ describe('blog content collection schema', () => {
     });
     expect(result.success).toBe(true);
   });
+
+  it('accepts a local-path heroImage', () => {
+    const result = blogSchema.safeParse({
+      ...validPost,
+      heroImage: '/images/hero-dating-tips.jpg',
+    });
+    expect(result.success).toBe(true);
+  });
 });

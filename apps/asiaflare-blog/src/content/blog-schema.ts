@@ -13,7 +13,7 @@ export const blogSchema = z.object({
   author: z.string().default('AsiaFlare Team'),
   tags: z.array(z.string()).default([]),
   draft: z.boolean().default(false),
-  heroImage: z.string().url().optional(),
+  heroImage: z.string().optional(),
 });
 
 export type BlogFrontmatter = z.infer<typeof blogSchema>;
