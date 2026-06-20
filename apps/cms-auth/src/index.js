@@ -94,19 +94,49 @@ function postMessageResponse(status, data) {
       ? `authorization:github:${status}:${data}`
       : `authorization:github:${status}:${JSON.stringify(data)}`;
 
+  // Decap CMS uses a two-step handshake before it will accept the token:
+  //   1. Popup sends   "authorizing:github"              → opener registers authorizeCallback
+  //   2. Opener sends  "authorizing:github"              → popup (via authWindow.postMessage)
+  //   3. Popup sends   "authorization:github:success:…"  → opener processes token
+  //
+  // Sending the success message directly (skipping the handshake) leaves the
+  // CMS in handshakeCallback mode and it silently ignores the token.
   const html = `<!doctype html>
 <html>
 <head><title>Authenticating…</title></head>
 <body>
 <script>
   (function () {
-    function send(msg) {
-      if (window.opener) {
-        window.opener.postMessage(msg, '*');
-      }
+    var message = ${JSON.stringify(message)};
+    var opener = window.opener;
+
+    if (!opener) {
+      document.body.textContent = 'Authentication complete. You can close this window.';
+      return;
+    }
+
+    // Step 1: announce ourselves so the CMS swaps from handshakeCallback
+    // to authorizeCallback.
+    opener.postMessage('authorizing:github', '*');
+
+    // Step 2: wait for the CMS to echo "authorizing:github" back, then send
+    // the token. Fall back to a timeout in case the echo never arrives.
+    var sent = false;
+    function sendToken() {
+      if (sent) return;
+      sent = true;
+      opener.postMessage(message, '*');
       window.close();
     }
-    send(${JSON.stringify(message)});
+
+    window.addEventListener('message', function (e) {
+      if (e.data === 'authorizing:github') {
+        sendToken();
+      }
+    });
+
+    // Fallback: if the handshake echo doesn't arrive within 2 s, send anyway.
+    setTimeout(sendToken, 2000);
   })();
 </script>
 <p>Authentication complete. You can close this window.</p>
