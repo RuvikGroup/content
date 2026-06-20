@@ -13,7 +13,13 @@ export const blogSchema = z.object({
   author: z.string().default('LatinFlare Team'),
   tags: z.array(z.string()).default([]),
   draft: z.boolean().default(false),
-  heroImage: z.string().url().optional(),
+  heroImage: z
+    .string()
+    .refine(
+      (v) => v.startsWith('/') || z.string().url().safeParse(v).success,
+      { message: 'heroImage must be an absolute URL or an absolute path starting with /' },
+    )
+    .optional(),
 });
 
 export type BlogFrontmatter = z.infer<typeof blogSchema>;

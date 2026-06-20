@@ -4,7 +4,7 @@ description: "Make your first date memorable with these five practical tips tail
 pubDate: "2026-06-19"
 author: "AsiaFlare Team"
 tags: ["dating-tips", "first-date", "relationships", "culture"]
-heroImage: "https://images.unsplash.com/photo-1529543544282-ea57407bc2a7?w=1200&h=630&fit=crop&q=80"
+heroImage: "/images/hero-dating-tips.jpg"
 ---
 
 First dates are exciting — but they can also be nerve-wracking. Whether you matched five minutes ago or have been chatting for weeks, **the way you show up on that first date sets the tone** for everything that follows.
