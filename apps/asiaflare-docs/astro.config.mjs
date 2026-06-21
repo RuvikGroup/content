@@ -40,6 +40,8 @@ export default defineConfig({
 			],
 			social: [
 				{ icon: 'x.com', label: 'X / Twitter', href: 'https://x.com/asiaflare' },
+				{ icon: 'instagram', label: 'Instagram', href: 'https://instagram.com/asiaflareapp' },
+				{ icon: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/asiaflareapp' },
 			],
 			sidebar: [
 				{
