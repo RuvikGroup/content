@@ -40,6 +40,8 @@ export default defineConfig({
 			],
 			social: [
 				{ icon: 'x.com', label: 'X / Twitter', href: 'https://x.com/latinflare' },
+				{ icon: 'instagram', label: 'Instagram', href: 'https://instagram.com/latinflareapp' },
+				{ icon: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/latinflareapp' },
 			],
 			sidebar: [
 				{
