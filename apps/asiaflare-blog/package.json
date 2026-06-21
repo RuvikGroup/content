@@ -4,7 +4,6 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "cp ../../packages/cms-config/config.asiaflare.yml public/admin/config.yml",
     "build": "astro build",
     "postbuild": "npx pagefind --site dist",
     "preview": "astro preview",
