@@ -7,3 +7,6 @@ dist/
 .env
 .env.*
 !.env.example
+.gstack/
+# Generated CMS configs — managed by apps/cms-admin, not per-blog copies
+apps/*/public/admin/
