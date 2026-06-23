@@ -44,8 +44,9 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
               ? <img src={featured.data.heroImage} alt={featured.data.title} />
               : <div class="blog-featured-img-bg"></div>
             }
+            {featured.data.flag && <div class="blog-featured-flag">{featured.data.flag}</div>}
             <div class="blog-featured-img-label">
-              {(featured.data.tags[0] || featured.data.title).slice(0, 3).toUpperCase()}
+              {featured.data.location || (featured.data.tags[0] || featured.data.title).slice(0, 3).toUpperCase()}
             </div>
           </div>
           <div class="blog-featured-body">
@@ -210,6 +211,16 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
     position: absolute;
     inset: 0;
     opacity: 0.22;
+  }
+  .blog-featured-flag {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 56px;
+    line-height: 1;
+    opacity: 0.3;
+    user-select: none;
+    pointer-events: none;
   }
   .blog-featured-img-label {
     position: relative;

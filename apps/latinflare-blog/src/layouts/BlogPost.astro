@@ -9,7 +9,7 @@ interface Props {
 }
 
 const { post } = Astro.props;
-const { title, description, pubDate, updatedDate, author, tags, heroImage } = post.data;
+const { title, description, pubDate, updatedDate, author, tags, heroImage, flag, location } = post.data;
 
 const dateOpts: Intl.DateTimeFormatOptions = {
   timeZone: 'UTC',
@@ -27,7 +27,7 @@ const ogImage = heroImage && Astro.site
   ? new URL(heroImage, Astro.site).href
   : heroImage;
 
-const topicAbbr = (tags[0] || title).slice(0, 3).toUpperCase();
+const topicAbbr = location || (tags[0] || title).slice(0, 3).toUpperCase();
 ---
 
 <BaseLayout title={title} description={description} image={ogImage} fullWidth>
@@ -52,6 +52,8 @@ const topicAbbr = (tags[0] || title).slice(0, 3).toUpperCase();
     </a>
     <div class="article-hero-badges">
       {tags.length > 0 && <span class="article-meta-cat">{tags[0]}</span>}
+      {flag && <span class="article-meta-flag">{flag}</span>}
+      {location && <span class="article-meta-location">{location}</span>}
     </div>
     <h1>{title}</h1>
     <div class="article-hero-meta">
@@ -69,6 +71,7 @@ const topicAbbr = (tags[0] || title).slice(0, 3).toUpperCase();
     <div class="article-hero-img">
       <div class="article-hero-media">
         <img src={heroImage} alt={title} />
+        {flag && <div class="article-hero-flag">{flag}</div>}
         <div class="article-hero-img-text">{topicAbbr}</div>
       </div>
     </div>
@@ -76,6 +79,7 @@ const topicAbbr = (tags[0] || title).slice(0, 3).toUpperCase();
   {!heroImage && (
     <div class="article-hero-img">
       <div class="article-hero-media article-hero-media--no-img">
+        {flag && <div class="article-hero-flag">{flag}</div>}
         <div class="article-hero-img-text">{topicAbbr}</div>
       </div>
     </div>
@@ -204,7 +208,18 @@ const topicAbbr = (tags[0] || title).slice(0, 3).toUpperCase();
   }
   .article-back-link:hover { color: var(--color-primary); }
   .article-back-link svg { width: 13px; height: 13px; }
-  .article-hero-badges { margin-bottom: 16px; display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .article-hero-badges { margin-bottom: 16px; display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .article-meta-flag {
+    font-size: 20px;
+    line-height: 1;
+  }
+  .article-meta-location {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-muted);
+    letter-spacing: 0.04em;
+  }
   .article-meta-cat {
     background: rgba(79,55,139,.08);
     color: var(--color-primary);
@@ -273,6 +288,17 @@ const topicAbbr = (tags[0] || title).slice(0, 3).toUpperCase();
     opacity: 0.35;
   }
   .article-hero-media--no-img { aspect-ratio: 21/6; }
+  .article-hero-flag {
+    position: absolute;
+    top: 20px;
+    right: 28px;
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 1;
+    opacity: 0.25;
+    user-select: none;
+    pointer-events: none;
+    z-index: 1;
+  }
   .article-hero-img-text {
     position: relative;
     font-family: var(--font-display, 'Urbanist', sans-serif);

@@ -7,7 +7,7 @@ interface Props {
 }
 
 const { post, index = 0 } = Astro.props;
-const { title, description, pubDate, author, tags, heroImage } = post.data;
+const { title, description, pubDate, author, tags, heroImage, flag, location } = post.data;
 
 const formattedDate = pubDate.toLocaleDateString('en-US', {
   timeZone: 'UTC',
@@ -27,14 +27,15 @@ const GRADIENTS = [
 ];
 const gradient = GRADIENTS[index % GRADIENTS.length];
 
-const topicAbbr = (tags[0] || title).slice(0, 2).toUpperCase();
+const topicAbbr = location?.slice(0, 2).toUpperCase() || (tags[0] || title).slice(0, 2).toUpperCase();
 const topicLabel = tags[0] || 'Article';
 ---
 
 <a href={`/${post.id}/`} class="blog-card">
   <div class="blog-card-header" style={`background: ${gradient}`}>
     <div class="blog-card-header-bg">{topicAbbr}</div>
-    <div class="blog-card-topic-sub">Article</div>
+    {flag && <div class="blog-card-flag">{flag}</div>}
+    <div class="blog-card-topic-sub">{location || 'Article'}</div>
     <div class="blog-card-topic">{topicLabel}</div>
   </div>
   <div class="blog-card-body">
@@ -85,6 +86,15 @@ const topicLabel = tags[0] || 'Article';
     letter-spacing: -0.04em;
     user-select: none;
     pointer-events: none;
+  }
+  .blog-card-flag {
+    position: absolute;
+    top: 8px;
+    left: 14px;
+    font-size: 24px;
+    line-height: 1;
+    opacity: 0.6;
+    z-index: 1;
   }
   .blog-card-topic {
     font-family: var(--font-display, 'Urbanist', sans-serif);
