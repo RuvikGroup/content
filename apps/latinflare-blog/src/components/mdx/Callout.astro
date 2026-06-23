@@ -1,0 +1,89 @@
+---
+interface Props {
+  type?: 'info' | 'tip' | 'warning' | 'note';
+  title?: string;
+}
+
+const { type = 'info', title } = Astro.props;
+
+const icons: Record<string, string> = {
+  info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
+  tip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.5-1.4 4.7-3.5 5.9V17H8.5v-2.1C6.4 13.7 5 11.5 5 9a7 7 0 0 1 7-7z"/></svg>',
+  warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+  note: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>',
+};
+---
+
+<aside class={`callout callout--${type}`}>
+  <div class="callout-header">
+    <span class="callout-icon" set:html={icons[type]} />
+    {title && <span class="callout-title">{title}</span>}
+    {!title && <span class="callout-title">{type.charAt(0).toUpperCase() + type.slice(1)}</span>}
+  </div>
+  <div class="callout-body">
+    <slot />
+  </div>
+</aside>
+
+<style>
+  .callout {
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 28px 0;
+    border: 1px solid transparent;
+  }
+  .callout-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .callout-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .callout-icon :global(svg) { width: 18px; height: 18px; }
+  .callout-title {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .callout-body :global(p) {
+    font-size: 15px !important;
+    margin-bottom: 0 !important;
+    line-height: 1.65 !important;
+  }
+  .callout-body :global(p + p) { margin-top: 8px !important; }
+
+  .callout--info {
+    background: rgba(59, 130, 246, 0.07);
+    border-color: rgba(59, 130, 246, 0.25);
+    color: #1e3a5f;
+  }
+  .callout--info .callout-icon, .callout--info .callout-title { color: #2563eb; }
+  .callout--tip {
+    background: rgba(16, 185, 129, 0.07);
+    border-color: rgba(16, 185, 129, 0.25);
+    color: #064e3b;
+  }
+  .callout--tip .callout-icon, .callout--tip .callout-title { color: #059669; }
+  .callout--warning {
+    background: rgba(245, 158, 11, 0.07);
+    border-color: rgba(245, 158, 11, 0.25);
+    color: #451a03;
+  }
+  .callout--warning .callout-icon, .callout--warning .callout-title { color: #d97706; }
+  .callout--note {
+    background: rgba(107, 114, 128, 0.07);
+    border-color: rgba(107, 114, 128, 0.2);
+    color: var(--color-muted);
+  }
+  .callout--note .callout-icon, .callout--note .callout-title { color: var(--color-muted); }
+
+  [data-theme='dark'] .callout--info { color: #bfdbfe; }
+  [data-theme='dark'] .callout--tip { color: #a7f3d0; }
+  [data-theme='dark'] .callout--warning { color: #fde68a; }
+</style>

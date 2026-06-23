@@ -19,7 +19,7 @@ const dateOpts: Intl.DateTimeFormatOptions = {
 };
 const formattedPubDate = pubDate.toLocaleDateString('en-US', dateOpts);
 const formattedUpdatedDate = updatedDate?.toLocaleDateString('en-US', dateOpts);
-const readingTime = Math.max(1, Math.round(post.body.split(/\s+/).length / 200));
+const readingTime = Math.max(1, Math.round((post.body ?? '').split(/\s+/).length / 200));
 
 const pageUrl = encodeURIComponent(new URL(Astro.url.pathname, Astro.site).href);
 const pageTitle = encodeURIComponent(title);

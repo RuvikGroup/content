@@ -1,6 +1,11 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BlogPost from '../layouts/BlogPost.astro';
+import Callout from '../components/mdx/Callout.astro';
+import MapEmbed from '../components/mdx/MapEmbed.astro';
+import ReviewCard from '../components/mdx/ReviewCard.astro';
+import RatingBreakdown from '../components/mdx/RatingBreakdown.astro';
+import AppRating from '../components/mdx/AppRating.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -15,5 +20,5 @@ const { Content } = await render(post);
 ---
 
 <BlogPost post={post}>
-  <Content />
+  <Content components={{ Callout, MapEmbed, ReviewCard, RatingBreakdown, AppRating }} />
 </BlogPost>
