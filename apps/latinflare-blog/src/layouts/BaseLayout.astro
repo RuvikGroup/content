@@ -3,12 +3,14 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  fullWidth?: boolean;
 }
 
 const {
   title,
   description = 'LatinFlare Blog — dating tips, success stories, and guides for Latin singles.',
   image,
+  fullWidth = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -114,6 +116,7 @@ const pageTitle = `${title} — LatinFlare Blog`;
         transition: background-color 0.2s ease, color 0.2s ease;
       }
       main { flex: 1; width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 2rem 1rem; }
+      main.full-width { max-width: none; padding: 0; margin: 0; }
       a { color: var(--color-primary); text-decoration: none; }
       a:hover { text-decoration: underline; }
       .sr-only {
@@ -131,7 +134,7 @@ const pageTitle = `${title} — LatinFlare Blog`;
   </head>
   <body>
     <slot name="header" />
-    <main>
+    <main class={fullWidth ? 'full-width' : undefined}>
       <slot />
     </main>
     <slot name="footer" />

@@ -11,7 +11,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
   // Page 1 is served by index.astro; skip it here
-  const pages = paginate(sorted, { pageSize: 10 });
+  const pages = paginate(sorted, { pageSize: 7 });
   return pages.filter(({ params }) => Number(params.page) > 1);
 }
 

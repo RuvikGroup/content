@@ -21,7 +21,7 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<BaseLayout title="Blog" description="Dating tips, success stories, and guides for Asian singles.">
+<BaseLayout title="Blog" description="Dating tips, success stories, and guides for Asian singles." fullWidth>
   <Header slot="header" />
 
   <!-- COMPACT HERO -->
@@ -112,13 +112,6 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
 </BaseLayout>
 
 <style>
-  /* Override the BaseLayout main wrapper constraints for full-width layout */
-  :global(main) {
-    max-width: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
   /* HERO */
   .blog-hero {
     background: linear-gradient(135deg, #7a0d0d 0%, #c62828 60%, #c2185b 100%);

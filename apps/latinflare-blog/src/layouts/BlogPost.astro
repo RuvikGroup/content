@@ -30,7 +30,7 @@ const ogImage = heroImage && Astro.site
 const topicAbbr = (tags[0] || title).slice(0, 3).toUpperCase();
 ---
 
-<BaseLayout title={title} description={description} image={ogImage}>
+<BaseLayout title={title} description={description} image={ogImage} fullWidth>
   <Header slot="header" />
 
   <div class="reading-progress" id="reading-progress"></div>
@@ -469,8 +469,8 @@ window.addEventListener('scroll', () => {
 
   if (articleEl && progressBar) {
     const top = articleEl.getBoundingClientRect().top + sy;
-    const height = articleEl.offsetHeight;
-    const pct = Math.min(Math.max((sy - top) / height, 0), 1);
+    const scrollable = Math.max(articleEl.offsetHeight - window.innerHeight, 1);
+    const pct = Math.min(Math.max((sy - top) / scrollable, 0), 1);
     progressBar.style.width = (pct * 100) + '%';
     if (stickyTime) {
       const remaining = Math.ceil(totalMinutes * (1 - pct));
