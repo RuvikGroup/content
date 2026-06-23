@@ -16,7 +16,15 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+let Content: Awaited<ReturnType<typeof render>>['Content'];
+try {
+  ({ Content } = await render(post));
+} catch (err) {
+  throw new Error(
+    `Failed to render post "${post.id}": ${err instanceof Error ? err.message : String(err)}. ` +
+    `Check the MDX/Markdown file for syntax errors or missing component imports.`
+  );
+}
 ---
 
 <BlogPost post={post}>

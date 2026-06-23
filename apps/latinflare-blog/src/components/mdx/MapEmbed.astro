@@ -7,15 +7,37 @@ interface Props {
 }
 
 const { src, title = 'Map', height = 400, caption } = Astro.props;
+
+if (!src || !src.trim()) {
+  throw new Error(
+    'MapEmbed: required prop "src" is empty or missing. Provide a valid HTTPS embed URL.'
+  );
+}
+
+const trimmedSrc = src.trim();
+try {
+  const url = new URL(trimmedSrc);
+  if (url.protocol !== 'https:') {
+    throw new Error(`MapEmbed: "src" must use HTTPS, got "${url.protocol}".`);
+  }
+} catch (err) {
+  if (err instanceof TypeError) {
+    throw new Error(`MapEmbed: "src" is not a valid URL: "${trimmedSrc}".`);
+  }
+  throw err;
+}
+
+const numericHeight = Math.round(Number(height));
+const safeHeight = Number.isFinite(numericHeight) && numericHeight >= 100 ? Math.min(numericHeight, 2000) : 400;
 ---
 
 <figure class="map-embed">
-  <div class="map-frame" style={`height: ${height}px`}>
+  <div class="map-frame" style={`height: ${safeHeight}px`}>
     <iframe
-      src={src}
+      src={trimmedSrc}
       title={title}
       loading="lazy"
-      allowfullscreen
+      sandbox="allow-scripts allow-same-origin allow-popups"
       referrerpolicy="no-referrer-when-downgrade"
     ></iframe>
   </div>

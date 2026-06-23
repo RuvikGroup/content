@@ -1,13 +1,31 @@
 ---
+const VALID_PLATFORMS = ['ios', 'android', 'both'] as const;
+type Platform = typeof VALID_PLATFORMS[number];
+
 interface Props {
   rating: number;
   count?: number;
-  platform?: 'ios' | 'android' | 'both';
+  platform?: Platform;
   appName?: string;
 }
 
 const { rating, count, platform = 'both', appName } = Astro.props;
-const clampedRating = Math.min(5, Math.max(0, rating));
+
+const numericRating = Number(rating);
+if (isNaN(numericRating)) {
+  throw new Error(
+    `AppRating: prop "rating" must be a number, got "${rating}". Use JSX syntax: rating={4.8} not rating="4.8".`
+  );
+}
+
+if (platform && !VALID_PLATFORMS.includes(platform as Platform)) {
+  throw new Error(
+    `AppRating: unknown platform "${platform}". Valid values are: ${VALID_PLATFORMS.join(', ')}.`
+  );
+}
+
+const clampedRating = Math.min(5, Math.max(0, numericRating));
+const safePlatform = platform as Platform;
 ---
 
 <div class="app-rating-card">
@@ -40,10 +58,10 @@ const clampedRating = Math.min(5, Math.max(0, rating));
     </div>
     <div class="app-rating-sub">
       {count && <span>{count.toLocaleString()} ratings</span>}
-      {count && platform && <span class="app-rating-dot"></span>}
-      {platform === 'ios' && <span>App Store</span>}
-      {platform === 'android' && <span>Google Play</span>}
-      {platform === 'both' && <span>App Store &amp; Google Play</span>}
+      {count && safePlatform && <span class="app-rating-dot"></span>}
+      {safePlatform === 'ios' && <span>App Store</span>}
+      {safePlatform === 'android' && <span>Google Play</span>}
+      {safePlatform === 'both' && <span>App Store &amp; Google Play</span>}
     </div>
   </div>
 </div>

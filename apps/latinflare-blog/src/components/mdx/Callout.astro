@@ -1,24 +1,35 @@
 ---
+const VALID_TYPES = ['info', 'tip', 'warning', 'note'] as const;
+type CalloutType = typeof VALID_TYPES[number];
+
 interface Props {
-  type?: 'info' | 'tip' | 'warning' | 'note';
+  type?: CalloutType;
   title?: string;
 }
 
 const { type = 'info', title } = Astro.props;
 
-const icons: Record<string, string> = {
+if (!VALID_TYPES.includes(type as CalloutType)) {
+  throw new Error(
+    `Callout: unknown type "${type}". Valid values are: ${VALID_TYPES.join(', ')}.`
+  );
+}
+
+const icons: Record<CalloutType, string> = {
   info: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>',
   tip: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 1 7 7c0 2.5-1.4 4.7-3.5 5.9V17H8.5v-2.1C6.4 13.7 5 11.5 5 9a7 7 0 0 1 7-7z"/></svg>',
   warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
   note: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>',
 };
+
+const safeType = type as CalloutType;
+const displayTitle = title ?? (safeType.charAt(0).toUpperCase() + safeType.slice(1));
 ---
 
-<aside class={`callout callout--${type}`}>
+<aside class={`callout callout--${safeType}`}>
   <div class="callout-header">
-    <span class="callout-icon" set:html={icons[type]} />
-    {title && <span class="callout-title">{title}</span>}
-    {!title && <span class="callout-title">{type.charAt(0).toUpperCase() + type.slice(1)}</span>}
+    <span class="callout-icon" set:html={icons[safeType]} />
+    <span class="callout-title">{displayTitle}</span>
   </div>
   <div class="callout-body">
     <slot />

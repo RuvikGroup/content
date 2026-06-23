@@ -5,15 +5,29 @@ interface Props {
   breakdown?: number[];
 }
 
-// breakdown is [5-star%, 4-star%, 3-star%, 2-star%, 1-star%] as counts or percentages
 const { overall, count, breakdown = [] } = Astro.props;
 
-const clampedOverall = Math.min(5, Math.max(0, overall));
+const numericOverall = Number(overall);
+if (isNaN(numericOverall)) {
+  throw new Error(
+    `RatingBreakdown: prop "overall" must be a number, got "${overall}". Use JSX syntax: overall={4.8} not overall="4.8".`
+  );
+}
+
+const clampedOverall = Math.min(5, Math.max(0, numericOverall));
 const fullStars = Math.floor(clampedOverall);
 const hasHalf = clampedOverall % 1 >= 0.5;
 
 const total = breakdown.reduce((a, b) => a + b, 0);
-const pcts = total > 0 ? breakdown.map((v) => Math.round((v / total) * 100)) : breakdown;
+let pcts: number[];
+if (total > 0) {
+  pcts = breakdown.map((v) => Math.round((v / total) * 100));
+} else {
+  if (breakdown.some((v) => v !== 0)) {
+    console.warn('RatingBreakdown: breakdown values sum to 0 but contain non-zero entries. Displaying all bars as 0%.');
+  }
+  pcts = breakdown.map(() => 0);
+}
 ---
 
 <div class="rating-breakdown">
