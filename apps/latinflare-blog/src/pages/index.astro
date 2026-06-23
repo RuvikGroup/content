@@ -46,7 +46,7 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
             }
             {featured.data.flag && <div class="blog-featured-flag">{featured.data.flag}</div>}
             <div class="blog-featured-img-label">
-              {featured.data.location || (featured.data.tags[0] || featured.data.title).slice(0, 3).toUpperCase()}
+              {featured.data.location?.slice(0, 3).toUpperCase() || (featured.data.tags[0] || featured.data.title).slice(0, 3).toUpperCase()}
             </div>
           </div>
           <div class="blog-featured-body">

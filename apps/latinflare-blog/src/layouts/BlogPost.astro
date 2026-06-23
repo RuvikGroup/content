@@ -27,7 +27,7 @@ const ogImage = heroImage && Astro.site
   ? new URL(heroImage, Astro.site).href
   : heroImage;
 
-const topicAbbr = location || (tags[0] || title).slice(0, 3).toUpperCase();
+const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slice(0, 3).toUpperCase();
 ---
 
 <BaseLayout title={title} description={description} image={ogImage} fullWidth>
