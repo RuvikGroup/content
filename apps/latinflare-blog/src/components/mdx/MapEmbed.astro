@@ -1,0 +1,70 @@
+---
+interface Props {
+  src: string;
+  title?: string;
+  height?: number;
+  caption?: string;
+}
+
+const { src, title = 'Map', height = 400, caption } = Astro.props;
+
+if (!src || !src.trim()) {
+  throw new Error(
+    'MapEmbed: required prop "src" is empty or missing. Provide a valid HTTPS embed URL.'
+  );
+}
+
+const trimmedSrc = src.trim();
+try {
+  const url = new URL(trimmedSrc);
+  if (url.protocol !== 'https:') {
+    throw new Error(`MapEmbed: "src" must use HTTPS, got "${url.protocol}".`);
+  }
+} catch (err) {
+  if (err instanceof TypeError) {
+    throw new Error(`MapEmbed: "src" is not a valid URL: "${trimmedSrc}".`);
+  }
+  throw err;
+}
+
+const numericHeight = Math.round(Number(height));
+const safeHeight = Number.isFinite(numericHeight) && numericHeight >= 100 ? Math.min(numericHeight, 2000) : 400;
+---
+
+<figure class="map-embed">
+  <div class="map-frame" style={`height: ${safeHeight}px`}>
+    <iframe
+      src={trimmedSrc}
+      title={title}
+      loading="lazy"
+      sandbox="allow-scripts allow-same-origin allow-popups"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+  {caption && <figcaption class="map-caption">{caption}</figcaption>}
+</figure>
+
+<style>
+  .map-embed {
+    margin: 32px 0;
+  }
+  .map-frame {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+  }
+  .map-frame iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  .map-caption {
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-muted);
+    margin-top: 10px;
+    font-style: italic;
+  }
+</style>

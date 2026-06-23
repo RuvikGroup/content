@@ -42,9 +42,9 @@ collections:
       - { label: Draft, name: draft, widget: boolean, default: false }
       - { label: Body, name: body, widget: markdown }
 
-  - name: asiaflare-docs
-    label: AsiaFlare Docs
-    folder: apps/asiaflare-docs/src/content/docs
+  - name: asiaflare-docs-getting-started
+    label: "AsiaFlare Docs: Getting Started"
+    folder: apps/asiaflare-docs/src/content/docs/getting-started
     create: true
     slug: "{{slug}}"
     extension: mdx
@@ -52,11 +52,17 @@ collections:
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
       - { label: Body, name: body, widget: markdown }
 
-  - name: latinflare-docs
-    label: LatinFlare Docs
-    folder: apps/latinflare-docs/src/content/docs
+  - name: asiaflare-docs-matching-discovery
+    label: "AsiaFlare Docs: Matching & Discovery"
+    folder: apps/asiaflare-docs/src/content/docs/matching-discovery
     create: true
     slug: "{{slug}}"
     extension: mdx
@@ -64,4 +70,262 @@ collections:
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: asiaflare-docs-subscriptions-billing
+    label: "AsiaFlare Docs: Subscriptions & Billing"
+    folder: apps/asiaflare-docs/src/content/docs/subscriptions-billing
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: asiaflare-docs-account
+    label: "AsiaFlare Docs: Account"
+    folder: apps/asiaflare-docs/src/content/docs/account
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: asiaflare-docs-troubleshooting
+    label: "AsiaFlare Docs: Troubleshooting"
+    folder: apps/asiaflare-docs/src/content/docs/troubleshooting
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: asiaflare-docs-your-profile
+    label: "AsiaFlare Docs: Your Profile"
+    folder: apps/asiaflare-docs/src/content/docs/your-profile
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: asiaflare-docs-safety
+    label: "AsiaFlare Docs: Safety"
+    folder: apps/asiaflare-docs/src/content/docs/safety
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: asiaflare-docs-getting-matches
+    label: "AsiaFlare Docs: Getting Matches"
+    folder: apps/asiaflare-docs/src/content/docs/getting-matches
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: latinflare-docs-getting-started
+    label: "LatinFlare Docs: Getting Started"
+    folder: apps/latinflare-docs/src/content/docs/getting-started
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: latinflare-docs-matching-discovery
+    label: "LatinFlare Docs: Matching & Discovery"
+    folder: apps/latinflare-docs/src/content/docs/matching-discovery
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: latinflare-docs-subscriptions-billing
+    label: "LatinFlare Docs: Subscriptions & Billing"
+    folder: apps/latinflare-docs/src/content/docs/subscriptions-billing
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: latinflare-docs-account
+    label: "LatinFlare Docs: Account"
+    folder: apps/latinflare-docs/src/content/docs/account
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: latinflare-docs-troubleshooting
+    label: "LatinFlare Docs: Troubleshooting"
+    folder: apps/latinflare-docs/src/content/docs/troubleshooting
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: latinflare-docs-your-profile
+    label: "LatinFlare Docs: Your Profile"
+    folder: apps/latinflare-docs/src/content/docs/your-profile
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: latinflare-docs-safety
+    label: "LatinFlare Docs: Safety"
+    folder: apps/latinflare-docs/src/content/docs/safety
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: latinflare-docs-getting-matches
+    label: "LatinFlare Docs: Getting Matches"
+    folder: apps/latinflare-docs/src/content/docs/getting-matches
+    create: true
+    slug: "{{slug}}"
+    extension: mdx
+    format: frontmatter
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text, required: false }
+      - label: Sidebar
+        name: sidebar
+        widget: object
+        required: false
+        fields:
+          - { label: Order, name: order, widget: number, required: false }
       - { label: Body, name: body, widget: markdown }

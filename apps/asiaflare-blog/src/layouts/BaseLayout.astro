@@ -3,12 +3,14 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  fullWidth?: boolean;
 }
 
 const {
   title,
   description = 'AsiaFlare Blog — dating tips, success stories, and guides for Asian singles.',
   image,
+  fullWidth = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -48,7 +50,7 @@ const pageTitle = `${title} — AsiaFlare Blog`;
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
     <!-- Prevent flash of wrong theme by applying preference before paint -->
     <script is:inline>
@@ -84,6 +86,7 @@ const pageTitle = `${title} — AsiaFlare Blog`;
         --color-tag-text: #b71c1c;
         --color-tag-hover: #ef9a9a;
         --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        --font-display: 'Urbanist', system-ui, sans-serif;
         --max-width: 1100px;
       }
 
@@ -113,6 +116,7 @@ const pageTitle = `${title} — AsiaFlare Blog`;
         transition: background-color 0.2s ease, color 0.2s ease;
       }
       main { flex: 1; width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 2rem 1rem; }
+      main.full-width { max-width: none; padding: 0; margin: 0; }
       a { color: var(--color-primary); text-decoration: none; }
       a:hover { text-decoration: underline; }
       .sr-only {
@@ -130,7 +134,7 @@ const pageTitle = `${title} — AsiaFlare Blog`;
   </head>
   <body>
     <slot name="header" />
-    <main>
+    <main class={fullWidth ? 'full-width' : undefined}>
       <slot />
     </main>
     <slot name="footer" />

@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
@@ -7,45 +8,103 @@ import PostCard from '../../components/PostCard.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
-
-  const tagMap = new Map<string, typeof posts>();
-  for (const post of posts) {
-    for (const tag of post.data.tags) {
-      const existing = tagMap.get(tag) ?? [];
-      existing.push(post);
-      tagMap.set(tag, existing);
-    }
-  }
-
-  return [...tagMap.entries()].map(([tag, tagPosts]) => ({
+  const tagSet = new Set(posts.flatMap((p) => p.data.tags ?? []));
+  return Array.from(tagSet).map((tag) => ({
     params: { tag },
-    props: {
-      tag,
-      posts: tagPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
-    },
+    props: { tag, posts: posts.filter((p) => p.data.tags?.includes(tag)) },
   }));
 }
 
+interface Props {
+  tag: string;
+  posts: CollectionEntry<'blog'>[];
+}
+
 const { tag, posts } = Astro.props;
+const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<BaseLayout title={`#${tag}`} description={`Posts tagged with #${tag} on the LatinFlare Blog.`}>
+<BaseLayout
+  title={`#${tag} — LatinFlare Blog`}
+  description={`Articles tagged #${tag} on the LatinFlare Blog.`}
+  fullWidth
+>
   <Header slot="header" />
 
-  <p class="back-link"><a href="/tags/">&larr; All tags</a></p>
-  <h1 class="page-title">#{tag}</h1>
-  <p class="page-desc">{posts.length} post{posts.length !== 1 ? 's' : ''}</p>
+  <div class="tag-header">
+    <div class="tag-header-inner">
+      <div class="tag-header-label">Tag</div>
+      <h1>#{tag}</h1>
+      <p>{sorted.length} article{sorted.length !== 1 ? 's' : ''}</p>
+    </div>
+  </div>
 
-  <div class="post-grid">
-    {posts.map((post) => <PostCard post={post} />)}
+  <div class="tag-outer">
+    {sorted.length > 0 ? (
+      <div class="tag-grid">
+        {sorted.map((post, i) => <PostCard post={post} index={i} />)}
+      </div>
+    ) : (
+      <p class="tag-empty">No articles found for this tag.</p>
+    )}
+    <div class="tag-back">
+      <a href="/" class="tag-back-link">&larr; All posts</a>
+    </div>
   </div>
 
   <Footer slot="footer" />
 </BaseLayout>
 
 <style>
-  .back-link { margin-bottom: 0.5rem; }
-  .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
-  .page-desc { color: var(--color-muted); margin-bottom: 2rem; }
-  .post-grid { display: grid; gap: 1.5rem; }
+  .tag-header {
+    background: linear-gradient(135deg, #2d1b69 0%, #4F378B 60%, #7c3aed 100%);
+    padding: 60px 40px 40px;
+    text-align: center;
+  }
+  .tag-header-inner { max-width: 600px; margin: 0 auto; }
+  .tag-header-label {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.7);
+    margin-bottom: 12px;
+  }
+  .tag-header h1 {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: clamp(24px, 3.5vw, 42px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+  }
+  .tag-header p { font-size: 14px; color: rgba(255,255,255,.7); margin: 0; }
+
+  .tag-outer { max-width: 1200px; margin: 0 auto; padding: 48px 32px 80px; }
+
+  .tag-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+
+  .tag-empty { color: var(--color-muted); font-size: 16px; padding: 40px 0; text-align: center; }
+
+  .tag-back { margin-top: 48px; text-align: center; }
+  .tag-back-link {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 10px 24px;
+    border: 2px solid var(--color-primary);
+    border-radius: 999px;
+    transition: background .15s, color .15s;
+  }
+  .tag-back-link:hover { background: var(--color-primary); color: var(--color-on-primary); }
+
+  @media (max-width: 768px) {
+    .tag-grid { grid-template-columns: 1fr; }
+    .tag-header { padding: 48px 24px 32px; }
+  }
+  @media (max-width: 480px) { .tag-outer { padding: 28px 16px 48px; } }
 </style>
