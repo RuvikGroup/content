@@ -5,6 +5,8 @@ pubDate: "2026-06-19"
 author: "LatinFlare Team"
 tags: ["dating-tips", "first-date"]
 heroImage: "/images/hero-dating-tips.jpg"
+flag: "🌎"
+location: "Latin America"
 ---
 
 First dates can be nerve-wracking. Here are five tips to help you make a great impression on LatinFlare:

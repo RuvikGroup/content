@@ -5,6 +5,8 @@ pubDate: "2026-06-19"
 author: "AsiaFlare Team"
 tags: ["dating-tips", "first-date", "relationships", "culture"]
 heroImage: "/images/hero-dating-tips.jpg"
+flag: "🌏"
+location: "Asia"
 ---
 
 First dates are exciting — but they can also be nerve-wracking. Whether you matched five minutes ago or have been chatting for weeks, **the way you show up on that first date sets the tone** for everything that follows.

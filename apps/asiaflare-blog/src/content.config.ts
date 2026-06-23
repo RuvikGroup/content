@@ -24,6 +24,8 @@ const blog = defineCollection({
         { message: 'heroImage must be an absolute URL or an absolute path starting with /' },
       )
       .optional(),
+    flag: z.string().optional(),
+    location: z.string().optional(),
   }),
 });
 

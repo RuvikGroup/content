@@ -1,0 +1,102 @@
+---
+title: "Your Post Title Here"
+description: "A one or two sentence summary for SEO and card previews."
+pubDate: 2026-07-01
+author: "AsiaFlare Team"
+tags: ["dating-tips", "travel", "culture"]
+heroImage: "/images/hero-example.jpg"
+flag: "🇯🇵"
+location: "Tokyo"
+draft: true
+---
+
+Opening paragraph — hook the reader immediately. MDX files work exactly like Markdown, but you can also embed interactive components anywhere in the body.
+
+## Section With a Map
+
+Set the scene, then drop in an interactive map so readers can orient themselves.
+
+<MapEmbed
+  src="https://www.openstreetmap.org/export/embed.html?bbox=139.7045%2C35.6831%2C139.7163%2C35.6889&layer=mapnik"
+  title="Location Name"
+  height={380}
+  caption="Brief description of what the map shows"
+/>
+
+## Tips and Callouts
+
+Use callouts to highlight important information that shouldn't be missed.
+
+<Callout type="tip" title="Best Time to Visit">
+  Seasonal advice or practical tips go here. Keep it to 2-3 sentences max.
+</Callout>
+
+<Callout type="info">
+  General context or fun facts. The title prop is optional.
+</Callout>
+
+<Callout type="warning" title="Heads Up">
+  Warnings about reservations, costs, seasonal closures, or anything readers should plan for.
+</Callout>
+
+## App Ratings and Social Proof
+
+When referencing app ratings, use the rating components to display them consistently.
+
+<AppRating
+  rating={4.8}
+  count={12400}
+  platform="both"
+  appName="AsiaFlare"
+/>
+
+<RatingBreakdown
+  overall={4.8}
+  count={12400}
+  breakdown={[9800, 1800, 500, 200, 100]}
+/>
+
+## User Reviews
+
+Embed real community reviews to build trust.
+
+<ReviewCard
+  author="First Name L."
+  rating={5}
+  date="June 2026"
+  platform="ios"
+  verified
+>
+  The review text goes here as children content. Keep it authentic — real voice, real detail. One short paragraph works best.
+</ReviewCard>
+
+<ReviewCard
+  author="Another User"
+  rating={4.5}
+  date="May 2026"
+  platform="android"
+  verified
+>
+  A second review for balance. Include different perspectives and platforms when possible.
+</ReviewCard>
+
+## Standard Markdown Still Works
+
+Everything you can do in `.md` files works in `.mdx` too:
+
+- **Bold**, *italic*, ~~strikethrough~~
+- [Links](https://example.com)
+- `inline code` and fenced code blocks
+- Blockquotes, lists, images, horizontal rules
+
+> "Blockquotes work exactly the same way."
+
+---
+
+## Closing Section
+
+End with a call to action. Mix standard Markdown with a final callout if it fits.
+
+<Callout type="tip" title="Get Started">
+  Download AsiaFlare and start matching today. Your next great date is one swipe away.
+</Callout>

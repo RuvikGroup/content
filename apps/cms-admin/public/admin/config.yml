@@ -22,6 +22,8 @@ collections:
       - { label: Author, name: author, widget: string, default: "AsiaFlare Team" }
       - { label: Tags, name: tags, widget: list, default: [] }
       - { label: Hero Image, name: heroImage, widget: image, required: false }
+      - { label: Flag Emoji, name: flag, widget: string, required: false, hint: "Country flag emoji shown on the hero (e.g. 🇯🇵)" }
+      - { label: Location, name: location, widget: string, required: false, hint: "City or country name shown on the hero (e.g. Tokyo)" }
       - { label: Draft, name: draft, widget: boolean, default: false }
       - { label: Body, name: body, widget: markdown }
 
@@ -39,6 +41,8 @@ collections:
       - { label: Author, name: author, widget: string, default: "LatinFlare Team" }
       - { label: Tags, name: tags, widget: list, default: [] }
       - { label: Hero Image, name: heroImage, widget: image, required: false }
+      - { label: Flag Emoji, name: flag, widget: string, required: false, hint: "Country flag emoji shown on the hero (e.g. 🇧🇷)" }
+      - { label: Location, name: location, widget: string, required: false, hint: "City or country name shown on the hero (e.g. Rio de Janeiro)" }
       - { label: Draft, name: draft, widget: boolean, default: false }
       - { label: Body, name: body, widget: markdown }
 

@@ -20,6 +20,8 @@ export const blogSchema = z.object({
       { message: 'heroImage must be an absolute URL or an absolute path starting with /' },
     )
     .optional(),
+  flag: z.string().optional(),
+  location: z.string().optional(),
 });
 
 export type BlogFrontmatter = z.infer<typeof blogSchema>;
