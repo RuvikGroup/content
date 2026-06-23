@@ -4,6 +4,8 @@ description: "Introducing the LatinFlare Blog — your guide to dating, relation
 pubDate: "2026-06-19"
 author: "LatinFlare Team"
 tags: ["announcements", "dating-tips"]
+flag: "🌎"
+location: "Latin America"
 ---
 
 Welcome to the LatinFlare Blog! We share dating advice, success stories, and cultural insights for Latin singles worldwide.

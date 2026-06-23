@@ -4,6 +4,8 @@ description: "Introducing the AsiaFlare Blog — your guide to dating, relations
 pubDate: "2026-06-19"
 author: "AsiaFlare Team"
 tags: ["announcements", "dating-tips"]
+flag: "🌏"
+location: "Asia"
 ---
 
 Welcome to the AsiaFlare Blog! We share dating advice, success stories, and cultural insights for Asian singles worldwide.
