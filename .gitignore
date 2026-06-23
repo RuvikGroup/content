@@ -10,3 +10,4 @@ dist/
 .gstack/
 # Generated CMS configs — managed by apps/cms-admin, not per-blog copies
 apps/*/public/admin/
+!apps/cms-admin/public/admin/
