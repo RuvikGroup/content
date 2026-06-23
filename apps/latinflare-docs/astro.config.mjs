@@ -5,6 +5,32 @@ import starlight from '@astrojs/starlight';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://docs.latinflareapp.com',
+	redirects: {
+		'/setting-up-profile': '/getting-started/setting-up-profile',
+		'/adding-photos': '/getting-started/adding-photos',
+		'/changing-location': '/getting-started/changing-location',
+		'/how-matching-works': '/matching-discovery/how-matching-works',
+		'/incognito-mode': '/matching-discovery/incognito-mode',
+		'/credits': '/matching-discovery/credits',
+		'/premium-vip': '/subscriptions-billing/premium-vip',
+		'/cancel-subscription': '/subscriptions-billing/cancel-subscription',
+		'/restore-purchases': '/subscriptions-billing/restore-purchases',
+		'/notification-settings': '/account/notification-settings',
+		'/blocking-people': '/account/blocking-people',
+		'/reporting': '/account/reporting',
+		'/delete-account': '/account/delete-account',
+		'/login-issues': '/troubleshooting/login-issues',
+		'/app-not-working': '/troubleshooting/app-not-working',
+		'/profile-photos': '/your-profile/profile-photos',
+		'/writing-bio': '/your-profile/writing-bio',
+		'/choosing-preferences': '/your-profile/choosing-preferences',
+		'/staying-safe': '/safety/staying-safe',
+		'/spotting-fake-profiles': '/safety/spotting-fake-profiles',
+		'/protecting-personal-info': '/safety/protecting-personal-info',
+		'/getting-more-matches': '/getting-matches/getting-more-matches',
+		'/best-times-active': '/getting-matches/best-times-active',
+		'/starting-conversations': '/getting-matches/starting-conversations',
+	},
 	integrations: [
 		starlight({
 			title: 'LatinFlare Help Centre',
