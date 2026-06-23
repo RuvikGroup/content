@@ -11,6 +11,7 @@ const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.va
 const featured = sorted[0];
 const rest = sorted.slice(1, 7);
 const trending = sorted.slice(0, 5);
+const hasMore = sorted.length > 7;
 
 const readingTime = (post: typeof sorted[number]) =>
   Math.max(1, Math.round(post.body.split(/\s+/).length / 200));
@@ -94,6 +95,14 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
         </div>
       </aside>
     </div>
+
+    {hasMore && (
+      <nav class="blog-pagination">
+        <a href="/page/2/" class="blog-pagination-link">
+          All posts &rarr;
+        </a>
+      </nav>
+    )}
 
   </div>
 
@@ -339,5 +348,27 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
   @media (max-width: 480px) {
     .blog-outer { padding: 28px 16px 48px; }
     .blog-featured-body { padding: 24px 20px; }
+  }
+
+  /* PAGINATION */
+  .blog-pagination { margin-top: 40px; text-align: center; }
+  .blog-pagination-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 10px 24px;
+    border: 2px solid var(--color-primary);
+    border-radius: 999px;
+    transition: background .15s, color .15s;
+  }
+  .blog-pagination-link:hover {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    text-decoration: none;
   }
 </style>
