@@ -5,38 +5,339 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PostCard from '../components/PostCard.astro';
 
-const PAGE_SIZE = 10;
-
 const posts = await getCollection('blog', ({ data }) => !data.draft);
 const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-const page1 = sorted.slice(0, PAGE_SIZE);
-const hasMore = sorted.length > PAGE_SIZE;
+const featured = sorted[0];
+const rest = sorted.slice(1, 7);
+const trending = sorted.slice(0, 5);
+
+const readingTime = (post: typeof sorted[number]) =>
+  Math.max(1, Math.round(post.body.split(/\s+/).length / 200));
+
+const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
+  timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric',
+});
 ---
 
 <BaseLayout title="Blog" description="Dating tips, success stories, and guides for Latin singles.">
   <Header slot="header" />
 
-  <h1 class="page-title">LatinFlare Blog</h1>
-  <p class="page-desc">Dating tips, success stories, and guides for Latin singles.</p>
-
-  <div class="post-grid">
-    {page1.map((post) => <PostCard post={post} />)}
+  <!-- COMPACT HERO -->
+  <div class="blog-hero">
+    <div class="blog-hero-label">Journal</div>
+    <h1>Dating tips, Latin love stories<br />and life across the Americas</h1>
   </div>
 
-  {hasMore && (
-    <nav class="pagination">
-      <a href="/page/2/">Older posts &rarr;</a>
-    </nav>
-  )}
+  <!-- MAIN CONTENT -->
+  <div class="blog-outer">
+
+    {featured && (
+      <a href={`/${featured.id}/`} class="blog-featured">
+        <div class="blog-featured-eyebrow">
+          {featured.data.tags[0] || 'Featured'} &middot; LatinFlare
+        </div>
+        <div class="blog-featured-split">
+          <div class="blog-featured-img">
+            {featured.data.heroImage
+              ? <img src={featured.data.heroImage} alt={featured.data.title} />
+              : <div class="blog-featured-img-bg"></div>
+            }
+            <div class="blog-featured-img-label">
+              {(featured.data.tags[0] || featured.data.title).slice(0, 3).toUpperCase()}
+            </div>
+          </div>
+          <div class="blog-featured-body">
+            <h2 class="blog-featured-title">{featured.data.title}</h2>
+            <p class="blog-featured-excerpt">{featured.data.description}</p>
+            <div class="blog-meta">
+              <span>{featured.data.author}</span>
+              <span class="blog-meta-dot"></span>
+              <time datetime={featured.data.pubDate.toISOString()}>{featDate}</time>
+              <span class="blog-meta-dot"></span>
+              <span>{readingTime(featured)} min read</span>
+            </div>
+            <span class="blog-featured-read">
+              Read article
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+        </div>
+      </a>
+    )}
+
+    <div class="blog-body">
+      <div class="blog-cards">
+        {rest.map((post, i) => <PostCard post={post} index={i} />)}
+      </div>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-block">
+          <div class="sidebar-heading">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            Trending now
+          </div>
+          <ul class="trending-list">
+            {trending.map((post, i) => (
+              <li>
+                <a href={`/${post.id}/`} class="trending-item">
+                  <span class="trending-num">{i + 1}</span>
+                  <div class="trending-content">
+                    <div class="trending-cat">{post.data.tags[0] || 'Article'}</div>
+                    <div class="trending-title">{post.data.title}</div>
+                    <div class="trending-time">{readingTime(post)} min read</div>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+  </div>
 
   <Footer slot="footer" />
 </BaseLayout>
 
 <style>
-  .page-title { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
-  .page-desc { color: var(--color-muted); margin-bottom: 2rem; }
-  .post-grid { display: grid; gap: 1.5rem; }
-  @media (min-width: 640px) { .post-grid { grid-template-columns: repeat(2, 1fr); } }
-  .pagination { margin-top: 2.5rem; text-align: right; }
+  /* HERO */
+  .blog-hero {
+    background: linear-gradient(135deg, #1a0845 0%, #4F378B 60%, #7c3aed 100%);
+    padding: 80px 40px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .blog-hero-label {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.7);
+    margin-bottom: 14px;
+  }
+  .blog-hero h1 {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: clamp(24px, 3.5vw, 42px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  /* OUTER WRAPPER */
+  .blog-outer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* FEATURED */
+  .blog-featured {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-surface);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(15,23,42,.08);
+    text-decoration: none;
+    color: inherit;
+    transition: transform .2s, box-shadow .2s;
+    margin-bottom: 48px;
+  }
+  .blog-featured:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(15,23,42,.12); }
+
+  .blog-featured-eyebrow {
+    background: var(--color-primary);
+    padding: 10px 28px;
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.95);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .blog-featured-eyebrow::before {
+    content: '';
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: rgba(255,255,255,.5);
+    border-radius: 2px;
+  }
+
+  .blog-featured-split { display: grid; grid-template-columns: 1fr 1fr; }
+  .blog-featured-img {
+    background: linear-gradient(135deg, #1a0845 0%, #4F378B 60%, #7c3aed 100%);
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 28px;
+  }
+  .blog-featured-img img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.25;
+  }
+  .blog-featured-img-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.22;
+  }
+  .blog-featured-img-label {
+    position: relative;
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 80px;
+    font-weight: 900;
+    color: rgba(255,255,255,.12);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    user-select: none;
+  }
+  .blog-featured-body {
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .blog-featured-title {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    margin-bottom: 14px;
+  }
+  .blog-featured-excerpt {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-muted);
+    margin-bottom: 20px;
+  }
+  .blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #9ca3af;
+    flex-wrap: wrap;
+  }
+  .blog-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: #d1d5db; flex-shrink: 0; }
+  .blog-featured-read {
+    margin-top: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+  .blog-featured-read svg { width: 14px; height: 14px; transition: transform .15s; }
+  .blog-featured:hover .blog-featured-read svg { transform: translateX(3px); }
+
+  /* BODY GRID */
+  .blog-body { display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: start; }
+  .blog-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  /* SIDEBAR */
+  .blog-sidebar { position: sticky; top: 88px; }
+  .sidebar-block {
+    background: var(--color-bg-surface);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(15,23,42,.06);
+  }
+  .sidebar-heading {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.9);
+    background: #0f172a;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sidebar-heading svg { width: 14px; height: 14px; color: var(--color-primary); }
+  .trending-list { list-style: none; margin: 0; padding: 0; }
+  .trending-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 1px solid var(--color-border);
+    transition: background .15s;
+  }
+  .trending-item:last-child { border-bottom: none; }
+  .trending-item:hover { background: var(--color-bg); }
+  .trending-num {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--color-border);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 24px;
+    text-align: right;
+  }
+  .trending-content { flex: 1; min-width: 0; }
+  .trending-cat {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    margin-bottom: 4px;
+  }
+  .trending-title {
+    font-family: var(--font-display, 'Urbanist', sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--color-text);
+    margin-bottom: 4px;
+  }
+  .trending-time { font-size: 11px; color: #9ca3af; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .blog-outer { padding: 40px 24px 64px; }
+    .blog-body { grid-template-columns: 1fr; gap: 32px; }
+    .blog-sidebar { position: static; }
+  }
+  @media (max-width: 768px) {
+    .blog-featured-split { grid-template-columns: 1fr; }
+    .blog-featured-img { min-height: 200px; }
+    .blog-cards { grid-template-columns: 1fr; }
+    .blog-hero { padding: 60px 24px 36px; }
+  }
+  @media (max-width: 480px) {
+    .blog-outer { padding: 28px 16px 48px; }
+    .blog-featured-body { padding: 24px 20px; }
+  }
 </style>
