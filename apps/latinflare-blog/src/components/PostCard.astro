@@ -15,7 +15,7 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
   month: 'long',
   day: 'numeric',
 });
-const readingTime = Math.max(1, Math.round(post.body.split(/\s+/).length / 200));
+const readingTime = Math.max(1, Math.round((post.body ?? '').split(/\s+/).length / 200));
 
 const GRADIENTS = [
   'linear-gradient(145deg, #2e1065 0%, #7c3aed 100%)',
