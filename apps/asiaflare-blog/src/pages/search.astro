@@ -13,8 +13,11 @@ import Footer from "../components/Footer.astro";
       s.src = pagefindJsUrl;
       s.onload = function () {
         var el = document.getElementById("search");
-        if (el && typeof PagefindUI !== "undefined") {
+        if (!el || typeof PagefindUI === "undefined") return;
+        try {
           new PagefindUI({ element: "#search", showSubResults: true });
+        } catch (e) {
+          el.innerHTML = "<p>Search failed to initialize. Please try again later.</p>";
         }
       };
       s.onerror = function () {

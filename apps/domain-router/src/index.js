@@ -19,6 +19,7 @@ const ORIGINS = {
 
 export default {
 	async fetch(request) {
+		let upstreamUrl;
 		try {
 			const url = new URL(request.url);
 			const origin = ORIGINS[url.hostname];
@@ -30,7 +31,6 @@ export default {
 				});
 			}
 
-			let upstreamUrl;
 			if (url.pathname === '/blog' || url.pathname.startsWith('/blog/')) {
 				const blogPath = url.pathname.replace(/^\/blog/, '') || '/';
 				upstreamUrl = `${origin.blog}${blogPath}${url.search}`;
@@ -40,7 +40,11 @@ export default {
 
 			return await fetch(new Request(upstreamUrl, request), { redirect: 'manual' });
 		} catch (err) {
-			console.error('domain-router error:', err);
+			console.error('domain-router error:', {
+				error: err?.message || String(err),
+				requestUrl: request.url,
+				upstreamUrl: upstreamUrl || 'not computed',
+			});
 			return new Response('Bad Gateway', {
 				status: 502,
 				headers: { 'Content-Type': 'text/plain', 'Cache-Control': 'no-store' },
