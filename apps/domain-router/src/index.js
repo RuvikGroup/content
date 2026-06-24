@@ -16,9 +16,15 @@ export default {
 			const url = new URL(request.url);
 
 			if (url.hostname.startsWith('www.')) {
-				const apex = new URL(request.url);
-				apex.hostname = url.hostname.slice(4);
-				return Response.redirect(apex.toString(), 301);
+				const apexHostname = url.hostname.slice(4);
+				if (!ORIGINS[apexHostname]) {
+					return new Response('Not found', {
+						status: 404,
+						headers: { 'Content-Type': 'text/plain', 'Cache-Control': 'no-store' },
+					});
+				}
+				url.hostname = apexHostname;
+				return Response.redirect(url.toString(), 301);
 			}
 
 			const origin = ORIGINS[url.hostname];
