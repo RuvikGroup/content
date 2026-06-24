@@ -3,15 +3,7 @@ const ORIGINS = {
 		landing: 'https://web-latinflare.pages.dev',
 		blog: 'https://ruvikgroup-latinflare-blog.pages.dev',
 	},
-	'www.latinflareapp.com': {
-		landing: 'https://web-latinflare.pages.dev',
-		blog: 'https://ruvikgroup-latinflare-blog.pages.dev',
-	},
 	'asiaflareapp.com': {
-		landing: 'https://web-asiaflare-next.pages.dev',
-		blog: 'https://ruvikgroup-asiaflare-blog.pages.dev',
-	},
-	'www.asiaflareapp.com': {
 		landing: 'https://web-asiaflare-next.pages.dev',
 		blog: 'https://ruvikgroup-asiaflare-blog.pages.dev',
 	},
@@ -22,6 +14,25 @@ export default {
 		let upstreamUrl;
 		try {
 			const url = new URL(request.url);
+
+			if (url.hostname.startsWith('www.')) {
+				const apexHostname = url.hostname.slice(4);
+				if (!ORIGINS[apexHostname]) {
+					return new Response('Not found', {
+						status: 404,
+						headers: { 'Content-Type': 'text/plain', 'Cache-Control': 'no-store' },
+					});
+				}
+				url.hostname = apexHostname;
+				return new Response(null, {
+					status: 301,
+					headers: {
+						Location: url.toString(),
+						'Cache-Control': 'max-age=3600',
+					},
+				});
+			}
+
 			const origin = ORIGINS[url.hostname];
 
 			if (!origin) {
