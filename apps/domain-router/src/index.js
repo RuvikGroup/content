@@ -3,15 +3,7 @@ const ORIGINS = {
 		landing: 'https://web-latinflare.pages.dev',
 		blog: 'https://ruvikgroup-latinflare-blog.pages.dev',
 	},
-	'www.latinflareapp.com': {
-		landing: 'https://web-latinflare.pages.dev',
-		blog: 'https://ruvikgroup-latinflare-blog.pages.dev',
-	},
 	'asiaflareapp.com': {
-		landing: 'https://web-asiaflare-next.pages.dev',
-		blog: 'https://ruvikgroup-asiaflare-blog.pages.dev',
-	},
-	'www.asiaflareapp.com': {
 		landing: 'https://web-asiaflare-next.pages.dev',
 		blog: 'https://ruvikgroup-asiaflare-blog.pages.dev',
 	},
@@ -22,6 +14,13 @@ export default {
 		let upstreamUrl;
 		try {
 			const url = new URL(request.url);
+
+			if (url.hostname.startsWith('www.')) {
+				const apex = new URL(request.url);
+				apex.hostname = url.hostname.slice(4);
+				return Response.redirect(apex.toString(), 301);
+			}
+
 			const origin = ORIGINS[url.hostname];
 
 			if (!origin) {
