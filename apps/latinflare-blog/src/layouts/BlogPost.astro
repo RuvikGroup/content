@@ -23,9 +23,11 @@ const readingTime = Math.max(1, Math.round((post.body ?? '').split(/\s+/).length
 
 const pageUrl = encodeURIComponent(new URL(Astro.url.pathname, Astro.site).href);
 const pageTitle = encodeURIComponent(title);
-const ogImage = heroImage && Astro.site
-  ? new URL(`${import.meta.env.BASE_URL}${heroImage}`, Astro.site).href
-  : heroImage;
+const isExternal = (src: string) => /^https?:\/\//.test(src);
+const heroSrc = heroImage && !isExternal(heroImage) ? `${import.meta.env.BASE_URL}${heroImage}` : heroImage;
+const ogImage = heroSrc && Astro.site
+  ? new URL(heroSrc, Astro.site).href
+  : heroSrc;
 
 const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slice(0, 3).toUpperCase();
 ---
@@ -70,7 +72,7 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
   {heroImage && (
     <div class="article-hero-img">
       <div class="article-hero-media">
-        <img src={`${import.meta.env.BASE_URL}${heroImage}`} alt={title} />
+        <img src={heroSrc} alt={title} />
         {flag && <div class="article-hero-flag">{flag}</div>}
         <div class="article-hero-img-text">{topicAbbr}</div>
       </div>

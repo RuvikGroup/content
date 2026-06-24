@@ -38,7 +38,26 @@ export default {
 				upstreamUrl = `${origin.landing}${url.pathname}${url.search}`;
 			}
 
-			return await fetch(new Request(upstreamUrl, request), { redirect: 'manual' });
+			const isBlog = url.pathname === '/blog' || url.pathname.startsWith('/blog/');
+			const resp = await fetch(new Request(upstreamUrl, request), { redirect: 'manual' });
+
+			if (isBlog && resp.status >= 300 && resp.status < 400) {
+				const location = resp.headers.get('Location');
+				if (location) {
+					let rewritten;
+					try {
+						const loc = new URL(location, upstreamUrl);
+						rewritten = `${url.origin}/blog${loc.pathname}${loc.search}`;
+					} catch {
+						rewritten = `/blog${location}`;
+					}
+					const headers = new Headers(resp.headers);
+					headers.set('Location', rewritten);
+					return new Response(resp.body, { status: resp.status, headers });
+				}
+			}
+
+			return resp;
 		} catch (err) {
 			console.error('domain-router error:', {
 				error: err?.message || String(err),

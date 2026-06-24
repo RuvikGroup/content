@@ -8,14 +8,23 @@ import Footer from "../components/Footer.astro";
   <Fragment slot="head">
     <!-- Pagefind search UI — only loaded on this page, assets exist after postbuild -->
     <link rel="stylesheet" href={`${import.meta.env.BASE_URL}/pagefind/pagefind-ui.css`} />
-    <script is:inline define:vars={{ pagefindJsUrl: `${import.meta.env.BASE_URL}/pagefind/pagefind-ui.js` }}>
+    <script is:inline define:vars={{ pagefindJsUrl: `${import.meta.env.BASE_URL}/pagefind/pagefind-ui.js`, baseUrl: import.meta.env.BASE_URL }}>
       var s = document.createElement("script");
       s.src = pagefindJsUrl;
       s.onload = function () {
         var el = document.getElementById("search");
         if (!el || typeof PagefindUI === "undefined") return;
         try {
-          new PagefindUI({ element: "#search", showSubResults: true });
+          new PagefindUI({
+            element: "#search",
+            showSubResults: true,
+            processResult: function (result) {
+              if (result.url && result.url.charAt(0) === "/" && result.url.indexOf(baseUrl) !== 0) {
+                result.url = baseUrl + result.url;
+              }
+              return result;
+            }
+          });
         } catch (e) {
           el.innerHTML = "<p>Search failed to initialize. Please try again later.</p>";
         }

@@ -41,7 +41,7 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
         <div class="blog-featured-split">
           <div class="blog-featured-img">
             {featured.data.heroImage
-              ? <img src={`${import.meta.env.BASE_URL}${featured.data.heroImage}`} alt={featured.data.title} />
+              ? <img src={/^https?:\/\//.test(featured.data.heroImage) ? featured.data.heroImage : `${import.meta.env.BASE_URL}${featured.data.heroImage}`} alt={featured.data.title} />
               : <div class="blog-featured-img-bg"></div>
             }
             {featured.data.flag && <div class="blog-featured-flag">{featured.data.flag}</div>}
