@@ -47,8 +47,18 @@ export default {
 					let rewritten;
 					try {
 						const loc = new URL(location, upstreamUrl);
-						rewritten = `${url.origin}/blog${loc.pathname}${loc.search}`;
-					} catch {
+						const upstreamOrigin = new URL(upstreamUrl).origin;
+						if (loc.origin === upstreamOrigin) {
+							rewritten = `${url.origin}/blog${loc.pathname}${loc.search}`;
+						} else {
+							rewritten = loc.href;
+						}
+					} catch (urlErr) {
+						console.error('domain-router: failed to parse redirect Location', {
+							location,
+							upstreamUrl,
+							error: urlErr?.message || String(urlErr),
+						});
 						rewritten = `/blog${location}`;
 					}
 					const headers = new Headers(resp.headers);
