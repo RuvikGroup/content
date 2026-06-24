@@ -39,7 +39,8 @@ export default {
 			}
 
 			return await fetch(new Request(upstreamUrl, request), { redirect: 'manual' });
-		} catch {
+		} catch (err) {
+			console.error('domain-router error:', err);
 			return new Response('Bad Gateway', {
 				status: 502,
 				headers: { 'Content-Type': 'text/plain', 'Cache-Control': 'no-store' },
