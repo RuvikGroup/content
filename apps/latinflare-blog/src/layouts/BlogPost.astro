@@ -163,7 +163,7 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
     font-family: var(--font-display, 'Urbanist', sans-serif);
     font-size: 12px;
     font-weight: 600;
-    color: #9ca3af;
+    color: var(--color-muted);
     text-decoration: none;
     flex-shrink: 0;
     transition: color .15s;
@@ -185,7 +185,7 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
   .sticky-bar-time {
     font-family: var(--font-display, 'Urbanist', sans-serif);
     font-size: 12px;
-    color: #9ca3af;
+    color: var(--color-muted);
     white-space: nowrap;
     flex-shrink: 0;
   }
@@ -203,7 +203,7 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
     font-family: var(--font-display, 'Urbanist', sans-serif);
     font-size: 13px;
     font-weight: 600;
-    color: #9ca3af;
+    color: var(--color-muted);
     text-decoration: none;
     margin-bottom: 18px;
     transition: color .15s;
@@ -246,11 +246,11 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
     justify-content: center;
     gap: 12px;
     font-size: 14px;
-    color: #9ca3af;
+    color: var(--color-muted);
     flex-wrap: wrap;
     padding-bottom: 40px;
   }
-  .article-hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: #d1d5db; flex-shrink: 0; }
+  .article-hero-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--color-border); flex-shrink: 0; }
   .author-avatar {
     width: 32px;
     height: 32px;
@@ -386,7 +386,7 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
   .prose :global(pre code) { background: none; padding: 0; border-radius: 0; font-size: 0.9em; }
   .prose :global(img) { max-width: 100%; height: auto; border-radius: 12px; margin: 1.5rem 0; }
   .prose :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
-  .prose :global(th) { text-align: left; font-family: var(--font-display, 'Urbanist', sans-serif); font-weight: 700; padding: 0.65rem 0.75rem; border-bottom: 2px solid var(--color-primary); background: #f9fafb; }
+  .prose :global(th) { text-align: left; font-family: var(--font-display, 'Urbanist', sans-serif); font-weight: 700; padding: 0.65rem 0.75rem; border-bottom: 2px solid var(--color-primary); background: var(--color-bg-surface); }
   .prose :global(td) { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--color-border); }
   .prose :global(tr:last-child td) { border-bottom: none; }
 
@@ -403,7 +403,7 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
     font-family: var(--font-display, 'Urbanist', sans-serif);
     font-size: 12px;
     font-weight: 700;
-    color: #9ca3af;
+    color: var(--color-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
   }
@@ -424,7 +424,7 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
     display: flex;
     gap: 20px;
     align-items: flex-start;
-    background: var(--color-bg);
+    background: var(--color-bg-surface);
     border-radius: 20px;
     padding: 28px;
     margin-top: 16px;
@@ -444,7 +444,7 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
     flex-shrink: 0;
   }
   .author-bio-name { font-family: var(--font-display, 'Urbanist', sans-serif); font-size: 16px; font-weight: 800; color: var(--color-text); margin-bottom: 2px; }
-  .author-bio-role { font-size: 13px; color: #9ca3af; margin-bottom: 8px; }
+  .author-bio-role { font-size: 13px; color: var(--color-muted); margin-bottom: 8px; }
   .author-bio-text { font-size: 14px; line-height: 1.65; color: var(--color-muted); }
 
   .share-links {
