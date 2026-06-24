@@ -19,18 +19,31 @@ const ORIGINS = {
 
 export default {
 	async fetch(request) {
-		const url = new URL(request.url);
-		const origin = ORIGINS[url.hostname];
+		try {
+			const url = new URL(request.url);
+			const origin = ORIGINS[url.hostname];
 
-		if (!origin) {
-			return new Response('Not found', { status: 404 });
+			if (!origin) {
+				return new Response('Not found', {
+					status: 404,
+					headers: { 'Content-Type': 'text/plain', 'Cache-Control': 'no-store' },
+				});
+			}
+
+			let upstreamUrl;
+			if (url.pathname === '/blog' || url.pathname.startsWith('/blog/')) {
+				const blogPath = url.pathname.replace(/^\/blog/, '') || '/';
+				upstreamUrl = `${origin.blog}${blogPath}${url.search}`;
+			} else {
+				upstreamUrl = `${origin.landing}${url.pathname}${url.search}`;
+			}
+
+			return await fetch(new Request(upstreamUrl, request), { redirect: 'manual' });
+		} catch {
+			return new Response('Bad Gateway', {
+				status: 502,
+				headers: { 'Content-Type': 'text/plain', 'Cache-Control': 'no-store' },
+			});
 		}
-
-		if (url.pathname === '/blog' || url.pathname.startsWith('/blog/')) {
-			const blogPath = url.pathname.replace(/^\/blog/, '') || '/';
-			return fetch(new Request(`${origin.blog}${blogPath}${url.search}`, request));
-		}
-
-		return fetch(new Request(`${origin.landing}${url.pathname}${url.search}`, request));
 	},
 };

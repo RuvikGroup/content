@@ -17,6 +17,10 @@ import Footer from "../components/Footer.astro";
           new PagefindUI({ element: "#search", showSubResults: true });
         }
       };
+      s.onerror = function () {
+        var el = document.getElementById("search");
+        if (el) el.innerHTML = "<p>Search is temporarily unavailable. Please try again later.</p>";
+      };
       document.head.appendChild(s);
     </script>
   </Fragment>
