@@ -3,7 +3,8 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://blog.asiaflareapp.com',
+  site: 'https://asiaflareapp.com',
+  base: '/blog',
   integrations: [mdx(), sitemap()],
   output: 'static',
 });

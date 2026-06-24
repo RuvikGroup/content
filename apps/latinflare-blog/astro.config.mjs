@@ -3,7 +3,8 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://blog.latinflareapp.com',
+  site: 'https://latinflareapp.com',
+  base: '/blog',
   integrations: [mdx(), sitemap()],
   output: 'static',
 });

@@ -1,0 +1,19 @@
+name = "domain-router"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[[routes]]
+pattern = "latinflareapp.com/*"
+zone_name = "latinflareapp.com"
+
+[[routes]]
+pattern = "www.latinflareapp.com/*"
+zone_name = "latinflareapp.com"
+
+[[routes]]
+pattern = "asiaflareapp.com/*"
+zone_name = "asiaflareapp.com"
+
+[[routes]]
+pattern = "www.asiaflareapp.com/*"
+zone_name = "asiaflareapp.com"

@@ -7,15 +7,33 @@ import Footer from "../components/Footer.astro";
 <BaseLayout title="Search" description="Search AsiaFlare Blog posts.">
   <Fragment slot="head">
     <!-- Pagefind search UI — only loaded on this page, assets exist after postbuild -->
-    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
-    <script is:inline src="/pagefind/pagefind-ui.js"></script>
-    <script is:inline>
-      window.addEventListener("DOMContentLoaded", () => {
+    <link rel="stylesheet" href={`${import.meta.env.BASE_URL}/pagefind/pagefind-ui.css`} />
+    <script is:inline define:vars={{ pagefindJsUrl: `${import.meta.env.BASE_URL}/pagefind/pagefind-ui.js`, baseUrl: import.meta.env.BASE_URL }}>
+      var s = document.createElement("script");
+      s.src = pagefindJsUrl;
+      s.onload = function () {
         var el = document.getElementById("search");
-        if (el && typeof PagefindUI !== "undefined") {
-          new PagefindUI({ element: "#search", showSubResults: true });
+        if (!el || typeof PagefindUI === "undefined") return;
+        try {
+          new PagefindUI({
+            element: "#search",
+            showSubResults: true,
+            processResult: function (result) {
+              if (result.url && result.url.charAt(0) === "/" && result.url.indexOf(baseUrl) !== 0) {
+                result.url = baseUrl + result.url;
+              }
+              return result;
+            }
+          });
+        } catch (e) {
+          el.innerHTML = "<p>Search failed to initialize. Please try again later.</p>";
         }
-      });
+      };
+      s.onerror = function () {
+        var el = document.getElementById("search");
+        if (el) el.innerHTML = "<p>Search is temporarily unavailable. Please try again later.</p>";
+      };
+      document.head.appendChild(s);
     </script>
   </Fragment>
 
