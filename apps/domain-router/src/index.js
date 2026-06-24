@@ -24,7 +24,13 @@ export default {
 					});
 				}
 				url.hostname = apexHostname;
-				return Response.redirect(url.toString(), 301);
+				return new Response(null, {
+					status: 301,
+					headers: {
+						Location: url.toString(),
+						'Cache-Control': 'max-age=3600',
+					},
+				});
 			}
 
 			const origin = ORIGINS[url.hostname];
