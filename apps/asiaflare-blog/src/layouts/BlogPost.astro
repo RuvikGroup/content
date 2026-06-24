@@ -38,7 +38,7 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
 
   <!-- Sticky reading bar -->
   <div class="sticky-bar" id="sticky-bar">
-    <a href="/" class="sticky-bar-back">
+    <a href={import.meta.env.BASE_URL} class="sticky-bar-back">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       Blog
     </a>
@@ -49,7 +49,7 @@ const topicAbbr = location?.slice(0, 3).toUpperCase() || (tags[0] || title).slic
 
   <!-- Article hero -->
   <div class="article-hero">
-    <a href="/" class="article-back-link">
+    <a href={import.meta.env.BASE_URL} class="article-back-link">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
       Blog
     </a>

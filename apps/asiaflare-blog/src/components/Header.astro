@@ -4,16 +4,16 @@ import ThemeToggle from './ThemeToggle.astro';
 
 <header>
   <nav>
-    <a href="/" class="logo-link" aria-label="AsiaFlare Blog">
-      <img src="/logo-light.svg" alt="AsiaFlare" height="32" class="logo logo-light" />
-      <img src="/logo-dark.svg" alt="AsiaFlare" height="32" class="logo logo-dark" />
+    <a href={import.meta.env.BASE_URL} class="logo-link" aria-label="AsiaFlare Blog">
+      <img src={`${import.meta.env.BASE_URL}/logo-light.svg`} alt="AsiaFlare" height="32" class="logo logo-light" />
+      <img src={`${import.meta.env.BASE_URL}/logo-dark.svg`} alt="AsiaFlare" height="32" class="logo logo-dark" />
     </a>
     <div class="nav-right">
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/tags/">Tags</a></li>
-        <li><a href="/search/">Search</a></li>
-        <li><a href="/rss.xml">RSS</a></li>
+        <li><a href={import.meta.env.BASE_URL}>Home</a></li>
+        <li><a href={`${import.meta.env.BASE_URL}/tags/`}>Tags</a></li>
+        <li><a href={`${import.meta.env.BASE_URL}/search/`}>Search</a></li>
+        <li><a href={`${import.meta.env.BASE_URL}/rss.xml`}>RSS</a></li>
       </ul>
       <ThemeToggle />
     </div>

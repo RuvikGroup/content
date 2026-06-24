@@ -48,7 +48,7 @@ const sorted = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.va
       <p class="tag-empty">No articles found for this tag.</p>
     )}
     <div class="tag-back">
-      <a href="/" class="tag-back-link">&larr; All posts</a>
+      <a href={import.meta.env.BASE_URL} class="tag-back-link">&larr; All posts</a>
     </div>
   </div>
 

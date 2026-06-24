@@ -34,7 +34,7 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
   <div class="blog-outer">
 
     {featured && (
-      <a href={`/${featured.id}/`} class="blog-featured">
+      <a href={`${import.meta.env.BASE_URL}/${featured.id}/`} class="blog-featured">
         <div class="blog-featured-eyebrow">
           {featured.data.tags[0] || 'Featured'} &middot; AsiaFlare
         </div>
@@ -84,7 +84,7 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
           <ul class="trending-list">
             {trending.map((post, i) => (
               <li>
-                <a href={`/${post.id}/`} class="trending-item">
+                <a href={`${import.meta.env.BASE_URL}/${post.id}/`} class="trending-item">
                   <span class="trending-num">{i + 1}</span>
                   <div class="trending-content">
                     <div class="trending-cat">{post.data.tags[0] || 'Article'}</div>
@@ -101,7 +101,7 @@ const featDate = featured?.data.pubDate.toLocaleDateString('en-US', {
 
     {hasMore && (
       <nav class="blog-pagination">
-        <a href="/page/2/" class="blog-pagination-link">
+        <a href={`${import.meta.env.BASE_URL}/page/2/`} class="blog-pagination-link">
           All posts &rarr;
         </a>
       </nav>

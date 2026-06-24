@@ -4,14 +4,14 @@ import ThemeToggle from './ThemeToggle.astro';
 
 <header>
   <nav>
-    <a href="/" class="logo-text-fallback" aria-label="LatinFlare Blog">
+    <a href={import.meta.env.BASE_URL} class="logo-text-fallback" aria-label="LatinFlare Blog">
       <span class="lf-icon">🔥</span> LatinFlare
     </a>
     <div class="nav-right">
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/tags/">Tags</a></li>
-        <li><a href="/rss.xml">RSS</a></li>
+        <li><a href={import.meta.env.BASE_URL}>Home</a></li>
+        <li><a href={`${import.meta.env.BASE_URL}/tags/`}>Tags</a></li>
+        <li><a href={`${import.meta.env.BASE_URL}/rss.xml`}>RSS</a></li>
       </ul>
       <ThemeToggle />
     </div>
