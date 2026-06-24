@@ -1,10 +1,10 @@
 const ORIGINS = {
 	'latinflareapp.com': {
-		landing: 'https://web-latinflare-next.pages.dev',
+		landing: 'https://web-latinflare.pages.dev',
 		blog: 'https://ruvikgroup-latinflare-blog.pages.dev',
 	},
 	'www.latinflareapp.com': {
-		landing: 'https://web-latinflare-next.pages.dev',
+		landing: 'https://web-latinflare.pages.dev',
 		blog: 'https://ruvikgroup-latinflare-blog.pages.dev',
 	},
 	'asiaflareapp.com': {
